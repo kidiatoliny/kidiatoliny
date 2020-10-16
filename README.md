@@ -1,6 +1,8 @@
 
 [![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=https://github.com/kidiatoliny)](https://github.com/kidiatoliny)
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/kidiatoliny/)](https://www.linkedin.com/in/kidiatoliny/)
+[![Facebook Badge](https://img.shields.io/badge/-Facebook-blue?style=flat-square&logo=Facebook&logoColor=white&link=https://www.facebook.com/kidiatoliny/)](https://www.facebook.com/kidiatoliny/)
+[![Instagram Badge](https://img.shields.io/badge/-Instagram-red?style=flat-square&logo=Instagram&logoColor=white&link=https://www.instagram.com/kidiatoliny/)](https://www.instagram.com/kidiatoliny/)
 <a target="_blank" href="https://api.whatsapp.com/send?phone=+2385993818">
   <img align="left" alt="Whatsapp" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/whatsapp.svg" />
 </a>
