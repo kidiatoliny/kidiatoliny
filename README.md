@@ -14,7 +14,6 @@
 
 Hi, I'm Kidiatoliny, but you can call me **KiD**.
 
-terminal
 **Computer lover** :computer:, **an aspiring software engineer** 
 
 ----
