@@ -38,8 +38,4 @@ Hi, I'm Kidiatoliny, but you can call me **KiD**.
     <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/swift/swift.png"></code>
       <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/go/go.png"></code>
 
-----
 
-#### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="100"> View my stats on Github 
-
-![Kidiatoliny GitHub Stats](https://github-readme-stats.vercel.app/api?username=kidiatoliny&show_icons=true)
