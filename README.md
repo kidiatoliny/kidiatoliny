@@ -13,6 +13,15 @@ If you’re curious about anything, feel free to ask! I’m happy to chat about 
 
 
 
+## 🌐 Connect with Me
+
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/kidiatoliny/) 
+[![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/kidiatoliny) 
+[![Dev.to](https://img.shields.io/badge/-Dev.to-000000?style=flat-square&logo=devdotto&logoColor=white)](https://dev.to/kidiatoliny) 
+[![Instagram](https://img.shields.io/badge/-Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/akira.photography_) 
+[![Portfolio](https://img.shields.io/badge/-Portfolio-FF5722?style=flat-square&logo=Google-Chrome&logoColor=white)](https://kid.akira-io.com)
+
+
 
 ## 🛠️ Skills & Tools
 
@@ -32,20 +41,24 @@ If you’re curious about anything, feel free to ask! I’m happy to chat about 
 
 
 ## 📊 GitHub Stats
+###
 
 <div align="center">
-  <img height="150px" src="https://github-readme-stats.vercel.app/api?username=kidiatoliny&show_icons=true&theme=tokyonight&hide_border=true" />
-  <img height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=kidiatoliny&layout=compact&theme=tokyonight&hide_border=true" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=kidiatoliny&locale=en&hide_title=true&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=true&order=2" height="150" alt="languages graph"  />
+  <img src="https://streak-stats.demolab.com?user=kidiatoliny&locale=en&mode=weekly&theme=dracula&hide_border=true&border_radius=5&order=3" height="150" alt="streak graph"  />
+  <img src="https://github-profile-trophy.vercel.app?username=kidiatoliny&theme=dracula&column=-1&row=1&margin-w=8&margin-h=8&no-bg=false&no-frame=true&order=4" height="150" alt="trophy graph"  />
 </div>
 
+###
 
-## 🌐 Connect with Me
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+</picture>
 
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/kidiatoliny/) 
-[![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/kidiatoliny) 
-[![Dev.to](https://img.shields.io/badge/-Dev.to-000000?style=flat-square&logo=devdotto&logoColor=white)](https://dev.to/kidiatoliny) 
-[![Instagram](https://img.shields.io/badge/-Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/akira.photography_) 
-[![Portfolio](https://img.shields.io/badge/-Portfolio-FF5722?style=flat-square&logo=Google-Chrome&logoColor=white)](https://kid.akira-io.com)
+###
+
 
 
 ## ✨ Fun Fact
