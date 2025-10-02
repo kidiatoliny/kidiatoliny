@@ -1,6 +1,17 @@
 # Hey there! I'm Kidiatoliny 👋
 ![Welcome](https://img.shields.io/badge/Welcome-✨-brightgreen) ![Bienvenido](https://img.shields.io/badge/Bienvenido-✨-blue) ![Bienvenue](https://img.shields.io/badge/Bienvenue-✨-orange) ![Willkommen](https://img.shields.io/badge/Willkommen-✨-red) ![Benvenuto](https://img.shields.io/badge/Benvenuto-✨-purple) ![欢迎](https://img.shields.io/badge/欢迎-✨-yellow)
 
+###
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+</picture>
+
+###
+
+
 ## 🚀 About Me
 
 Hey there! I’m a software developer who absolutely loves creating cutting-edge apps that push the limits of what’s possible. Whether it’s diving deep into full-stack development, optimizing back-end processes, or crafting beautiful, responsive front-ends, I thrive on challenges that test my skills and creativity.
@@ -48,17 +59,6 @@ If you’re curious about anything, feel free to ask! I’m happy to chat about 
   <img src="https://streak-stats.demolab.com?user=kidiatoliny&locale=en&mode=weekly&theme=dracula&hide_border=true&border_radius=5&order=3" height="150" alt="streak graph"  />
   <img src="https://github-profile-trophy.vercel.app?username=kidiatoliny&theme=dracula&column=-1&row=1&margin-w=8&margin-h=8&no-bg=false&no-frame=true&order=4" height="150" alt="trophy graph"  />
 </div>
-
-###
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
-  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
-</picture>
-
-###
-
 
 
 ## ✨ Fun Fact
