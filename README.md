@@ -29,7 +29,7 @@ If you’re curious about anything, feel free to ask! I’m happy to chat about 
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/kidiatoliny/) 
 [![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/kidiatoliny) 
 [![Dev.to](https://img.shields.io/badge/-Dev.to-000000?style=flat-square&logo=devdotto&logoColor=white)](https://dev.to/kidiatoliny) 
-[![Instagram](https://img.shields.io/badge/-Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/akira.photography_) 
+[![Instagram](https://img.shields.io/badge/-Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/kidiatoliny_) 
 [![Portfolio](https://img.shields.io/badge/-Portfolio-FF5722?style=flat-square&logo=Google-Chrome&logoColor=white)](https://kid.akira-io.com)
 
 
