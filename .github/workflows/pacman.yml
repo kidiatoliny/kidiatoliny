@@ -1,30 +1,36 @@
 name: Generate pacman animation
 
 on:
-  schedule: # execute every 12 hours
-    - cron: "* */12 * * *"
-
+  schedule:
+    - cron: "0 */12 * * *"
   workflow_dispatch:
-
   push:
     branches:
-    - main
+      - main
 
 jobs:
   generate:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
-      - name: generate pacman-contribution-graph.svg
-        uses: abozanona/pacman-contribution-graph@main
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          github_user_name: ${{ github.repository_owner }}
+          node-version: "20"
 
+      - name: Checkout pacman generator
+        run: git clone --depth 1 https://github.com/abozanona/pacman-contribution-graph.git /tmp/pacman-contribution-graph
 
-      - name: push pacman-contribution-graph.svg to the output branch
+      - name: Generate current-year pacman contribution graph
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/generate-pacman-current-year.mjs
+
+      - name: Push pacman contribution graph to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
