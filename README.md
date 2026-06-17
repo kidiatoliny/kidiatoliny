@@ -49,9 +49,10 @@ Most of my work sits around Akira: Laravel packages, SISP and Vinti4 payment too
 
 ## GitHub Activity
 
-<p>
+<div align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs?username=kidiatoliny&layout=compact&theme=transparent&hide_border=true" height="150" alt="Top languages" />
-</p>
+  <img src="https://streak-stats.demolab.com?user=kidiatoliny&theme=transparent&hide_border=true" height="150" alt="Contribution streak" />
+</div>
 
 ## Contact
 
