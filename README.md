@@ -1,129 +1,63 @@
-
-###
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
-  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+  <img alt="GitHub contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
 </picture>
 
-###
+# kidiatoliny
 
+I build Laravel packages, payment integrations, developer tools, and operational platforms.
 
-# Hey, I’m Kidiatoliny 👋
+Most of my work sits around Akira: Laravel packages, SISP and Vinti4 payment tooling for Cabo Verde, API tooling, billing SDKs, mobile apps, and systems used by transport and service teams.
 
-Full-Stack & Platform Engineer building SaaS platforms, developer tools, and open-source ecosystems.
+[Website](https://kid.akira-io.com) · [Akira packages](https://packages.akira-io.com) · [Akira on GitHub](https://github.com/akira-io)
 
----
+## Current Focus
 
-## Akira Ecosystem
+- Akira package ecosystem for PHP, Laravel, Node.js, TypeScript, Go, and Rust.
+- SISP and Vinti4 payment integrations for Laravel and Node.js.
+- NosFerry ticketing, passenger operations, refunds, and back-office workflows.
+- API inspection and developer tooling through Spectra and related packages.
+- Unified Dev as a workspace for developer productivity, package operations, and automation.
+- React Native applications connected to the same product and payment systems.
+- Small, documented packages with clear tests, stable APIs, and maintenance workflows.
 
-Building a collection of platforms and tools focused on solving real-world problems and improving developer productivity.
+## Selected Work
 
-🔗 https://github.com/akira-io/repositories
+| Project | Area | Notes |
+| --- | --- | --- |
+| [Laravel QRCode](https://github.com/akira-io/laravel-qrcode) | Laravel package | QR code generation for Laravel applications. |
+| [Laravel SISP](https://github.com/akira-io/laravel-sisp) | Payments | SISP and Vinti4 payment integration for Laravel. |
+| [Node SISP](https://github.com/akira-io/node-sisp) | Payments | SISP and Vinti4 client for Node.js applications. |
+| [Laravel PDF Invoices](https://github.com/akira-io/laravel-pdf-invoices) | Laravel package | Invoice generation for Laravel 12 and PHP 8.4 applications. |
+| [Laravel Auth Logs](https://github.com/akira-io/laravel-auth-logs) | Security | Authentication activity tracking with notifications and context. |
+| [Laravel Commentable](https://github.com/akira-io/laravel-commentable) | Laravel package | Comment system package for Eloquent models. |
+| [Spectra Desktop](https://spectra-desktop.app) | Developer tool | Local-first API workbench for route detection, auth capture, and request schema inference. |
+| [Unified Dev](https://www.unifieddev.app) | Developer productivity | Workspace tooling for packages, project setup, release work, and automation. |
+| [NosFerry](https://nosferry.com) | Transport platform | Ticketing and passenger operations for ferry travel in Cabo Verde. |
 
----
+## Stack
 
-## What I Build
+- Languages: PHP, TypeScript, Go, and Rust.
+- Backend: Laravel, Node.js, REST APIs, queues, billing, and payment flows.
+- Frontend: React, Inertia, Vue, Livewire, and Tailwind CSS.
+- Mobile: React Native and SwiftUI.
+- Systems: Go and Rust SDKs, desktop support libraries, and provider abstractions.
+- Data: PostgreSQL, MySQL, SQLite, Redis, and MongoDB.
+- Operations: Docker, GitHub Actions, Pest, and PHPStan.
+- Product domains: payments, ticketing, licensing, package distribution, API tooling, and operations software.
 
-### SaaS Platforms
+## GitHub Activity
 
-- **Hunter** — Developer platform connecting creators and builders - https://hunter.cv
+<p>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=kidiatoliny&layout=compact&theme=transparent&hide_border=true" height="150" alt="Top languages" />
+</p>
 
-- **NoxDireit** — Legal services platform improving access to legal solutions - https://noxdireit.cv  
+## Contact
 
-- **NosFerry** — Transportation platform for ticketing and management - https://nosferry.com  
-
-
----
-
-###  Laravel Ecosystem (Open Source)
-
-- **Laravel SISP** — Payment gateway integration  
-- **Laravel Auth Logs** — Authentication monitoring & security  
-- **Laravel Crypto** — Encryption toolkit  
-- **Laravel QRCode** — QR code generation  
-- **PDF Invoices** — Invoice generation system  
-- **Followable / Likeable / Commentable** — Social features  
-
----
-
-### Developer Tools
-
-- **Laravel Debugger** — Built with Rust  
-- **Unified Dev** — Developer productivity platform  
-
----
-
-## Core Stack
-
-###  Backend
-![Laravel](https://img.shields.io/badge/-Laravel-E74430?style=flat-square&logo=laravel&logoColor=white)
-![PHP](https://img.shields.io/badge/-PHP-777BB4?style=flat-square&logo=php&logoColor=white)
-![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
-![REST API](https://img.shields.io/badge/-REST-000000?style=flat-square)
-
----
-
-###  Frontend
-![Vue.js](https://img.shields.io/badge/-Vue-4FC08D?style=flat-square&logo=vue.js&logoColor=white)
-![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Inertia.js](https://img.shields.io/badge/-Inertia-9553E9?style=flat-square)
-![Livewire](https://img.shields.io/badge/-Livewire-4E56A6?style=flat-square)
-
----
-
-###  Mobile
-![React Native](https://img.shields.io/badge/-React%20Native-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![SwiftUI](https://img.shields.io/badge/-SwiftUI-FA7343?style=flat-square&logo=swift&logoColor=white)
-
----
-
-###  Developer Tools
-![Rust](https://img.shields.io/badge/-Rust-000000?style=flat-square&logo=rust&logoColor=white)
-
----
-
-###  Systems & Environment
-![macOS](https://img.shields.io/badge/-macOS-000000?style=flat-square&logo=apple&logoColor=white)
-![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
-
----
-
-###  DevOps & Infrastructure
-![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![CI/CD](https://img.shields.io/badge/-CI/CD-222222?style=flat-square&logo=githubactions&logoColor=white)
-
----
-
-###  Databases
-![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
-![SQL Server](https://img.shields.io/badge/-SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
-![SQLite](https://img.shields.io/badge/-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
-![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/-Redis-D82C20?style=flat-square&logo=redis&logoColor=white)
-
----
-
-##  GitHub Stats
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=kidiatoliny&layout=compact&theme=dracula&hide_border=true" height="150" />
-  <img src="https://streak-stats.demolab.com?user=kidiatoliny&theme=dracula&hide_border=true" height="150" />
-</div>
-
----
-
-##  Focus
-
-- Building scalable platforms  
-- Designing clean architectures  
-- Creating developer tools  
-- Growing open-source ecosystems  
-
----
-
-##  Philosophy
-
-Build products. Solve problems. Ship value.
+- Website: [kid.akira-io.com](https://kid.akira-io.com)
+- Packages: [packages.akira-io.com](https://packages.akira-io.com)
+- X: [@kidiatoliny](https://x.com/kidiatoliny)
+- LinkedIn: [kidiatoliny](https://www.linkedin.com/in/kidiatoliny)
+- Bluesky: [kidiatoliny](https://bsky.app/profile/kidiatoliny.bsky.social)
+- Email: [kid@akira-io.com](mailto:kid@akira-io.com)
