@@ -37,7 +37,14 @@ test('normalizes contribution totals and aggregates languages by size', () => {
   assert.equal(stats.contributions, 42);
   assert.equal(stats.currentStreak, 2);
   assert.equal(stats.longestStreak, 2);
-  assert.deepEqual(stats.languages, ['PHP', 'TypeScript', 'Swift', 'Rust', 'Go']);
+  assert.deepEqual(stats.languages, [
+    { name: 'PHP', share: 40 },
+    { name: 'TypeScript', share: 40 },
+    { name: 'Swift', share: 9 },
+    { name: 'Rust', share: 7 },
+    { name: 'Go', share: 4 },
+  ]);
+  assert.equal(stats.languages.reduce((sum, language) => sum + language.share, 0), 100);
 });
 
 test('fetches profile stats through GitHub GraphQL', async () => {

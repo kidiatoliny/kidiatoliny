@@ -1,70 +1,63 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/terminal-pacman-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/terminal-pacman.svg">
-  <img alt="Animated Pacman contribution graph running inside a macOS terminal" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/terminal-pacman.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+  <img width="100%" alt="Pacman moving through Kidiatoliny's contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+</picture>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/signal-identity-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/signal-identity-light.svg">
+  <img width="100%" alt="Kidiatoliny — product engineer in Luxembourg building production systems, native Apple products, and open-source infrastructure" src="assets/signal-identity-light.svg">
 </picture>
 
 <p align="center">
-  <strong>Product engineer building production systems, native Apple products, and open-source infrastructure.</strong>
+  <a href="https://kid.akira-io.com">Website</a> ·
+  <a href="https://github.com/kidiatoliny?tab=repositories">Repositories</a> ·
+  <a href="https://github.com/akira-io">Open source</a> ·
+  <a href="mailto:kid@akira-io.com">Contact</a>
 </p>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/signal-work-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/signal-work-light.svg">
+  <img width="100%" alt="Selected work across NosFerry, native Apple products, and Akira open-source infrastructure" src="assets/signal-work-light.svg">
+</picture>
 
 <p align="center">
-  <a href="https://kid.akira-io.com">website</a> ·
-  <a href="https://github.com/kidiatoliny">github</a> ·
-  <a href="https://github.com/akira-io">open source</a> ·
-  <a href="mailto:kid@akira-io.com">contact</a>
+  <a href="https://nosferry.com">NosFerry</a> ·
+  <a href="https://github.com/akira-foundation/dotsync">DotSync</a> ·
+  <a href="https://github.com/akira-foundation/lux-traffic">Hodos</a> ·
+  <a href="https://github.com/akira-io">Akira</a> ·
+  <a href="https://github.com/kidiatoliny/hunter">Hunter</a>
 </p>
 
-## ~/selected-work
+<br>
 
-<p>
-  <a href="https://nosferry.com">
-    <img src="assets/work-nosferry.svg" width="100%" alt="NosFerry, a production ferry operations platform for Cabo Verde">
-  </a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/signal-ecosystem-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/signal-ecosystem-light.svg">
+  <img width="100%" alt="Engineering ecosystem spanning products, Apple native software, payments and fiscal systems, foundations, deep learning, and cybersecurity studies" src="assets/signal-ecosystem-light.svg">
+</picture>
+
+<p align="center">
+  <a href="https://github.com/kidiatoliny?tab=repositories">Explore the full project catalog</a> ·
+  <a href="https://packages.akira-io.com">Browse packages</a>
 </p>
 
-<p>
-  <a href="https://github.com/akira-foundation/dotsync">
-    <img src="assets/work-apple-native.svg" width="100%" alt="Native macOS and iOS products built with Swift and SwiftUI">
-  </a>
-</p>
-
-<p>
-  <a href="https://github.com/akira-io">
-    <img src="assets/work-akira.svg" width="100%" alt="Akira open-source product infrastructure">
-  </a>
-</p>
-
-<p>
-  <a href="https://github.com/kidiatoliny/hunter">
-    <img src="assets/work-hunter.svg" width="100%" alt="Hunter, an open-source network for Cape Verdean builders">
-  </a>
-</p>
-
-## ~/project-explorer
-
-<p>
-  <a href="https://github.com/kidiatoliny?tab=repositories">
-    <img src="assets/project-explorer.svg" width="100%" alt="Projects grouped across products, Apple native, payments, foundations, and applied intelligence">
-  </a>
-</p>
-
-Production work stays in `~/work`. Deep learning and cybersecurity remain in `~/learning`. [Browse all repositories](https://github.com/kidiatoliny?tab=repositories).
-
-## ~/learning
-
-Deep learning and cybersecurity are active study tracks. They stay separate from the production work and open-source systems above.
-
-`deep learning` · `cybersecurity`
-
-## ~/connect
-
-[website](https://kid.akira-io.com) · [packages](https://packages.akira-io.com) · [github](https://github.com/kidiatoliny) · [linkedin](https://www.linkedin.com/in/kidiatoliny) · [email](mailto:kid@akira-io.com)
-
-## ~/profile
+<br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/github-stats-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/github-stats.svg">
-  <img alt="GitHub contributions, languages, and current engineering stack inside a macOS terminal" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/github-stats.svg">
+  <img width="100%" alt="GitHub contributions, streaks, language distribution, and current engineering stack" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/github-stats.svg">
 </picture>
+
+<p align="center">
+  <a href="https://kid.akira-io.com">kid.akira-io.com</a> ·
+  <a href="https://www.linkedin.com/in/kidiatoliny">LinkedIn</a> ·
+  <a href="mailto:kid@akira-io.com">kid@akira-io.com</a>
+</p>

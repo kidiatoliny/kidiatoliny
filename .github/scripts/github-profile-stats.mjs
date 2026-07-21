@@ -86,10 +86,19 @@ export function normalizeGitHubProfileStats(payload, today) {
     }
   }
 
-  const languages = [...languageSizes.entries()]
+  const topLanguages = [...languageSizes.entries()]
     .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
-    .slice(0, 5)
-    .map(([language]) => language);
+    .slice(0, 5);
+  const totalLanguageSize = topLanguages.reduce((total, [, size]) => total + size, 0);
+  const languages = topLanguages.map(([name, size]) => ({
+    name,
+    share: totalLanguageSize === 0 ? 0 : Math.round((size / totalLanguageSize) * 100),
+  }));
+
+  if (languages.length > 0) {
+    const roundedTotal = languages.reduce((total, language) => total + language.share, 0);
+    languages[0].share += 100 - roundedTotal;
+  }
 
   return {
     year: Number(today.slice(0, 4)),

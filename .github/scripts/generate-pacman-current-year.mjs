@@ -2,8 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 import { fetchGitHubProfileStats } from './github-profile-stats.mjs';
-import { renderGitHubStatsTerminal } from './github-stats-terminal.mjs';
-import { wrapPacmanInTerminal } from './pacman-terminal.mjs';
+import { renderGitHubStatsGrid } from './github-stats-grid.mjs';
 
 const generatorPath =
   process.env.PACMAN_GENERATOR_PATH ?? '/tmp/pacman-contribution-graph/dist/pacman-contribution-graph.js';
@@ -31,7 +30,6 @@ await generatePacmanSvg({
   githubToken,
   gameTheme: 'github',
   outputPath: 'dist/pacman-contribution-graph.svg',
-  terminalOutputPath: 'dist/terminal-pacman.svg',
 });
 
 await generatePacmanSvg({
@@ -40,7 +38,6 @@ await generatePacmanSvg({
   githubToken,
   gameTheme: 'github-dark',
   outputPath: 'dist/pacman-contribution-graph-dark.svg',
-  terminalOutputPath: 'dist/terminal-pacman-dark.svg',
 });
 
 const profileStats = await fetchGitHubProfileStats({
@@ -49,8 +46,8 @@ const profileStats = await fetchGitHubProfileStats({
   year: currentYear,
 });
 
-writeFileSync('dist/github-stats.svg', renderGitHubStatsTerminal(profileStats, 'github'));
-writeFileSync('dist/github-stats-dark.svg', renderGitHubStatsTerminal(profileStats, 'github-dark'));
+writeFileSync('dist/github-stats.svg', renderGitHubStatsGrid(profileStats, 'github'));
+writeFileSync('dist/github-stats-dark.svg', renderGitHubStatsGrid(profileStats, 'github-dark'));
 
 function patchGeneratorForCurrentYear(generatorPath) {
   const from = `${currentYear}-01-01T00:00:00Z`;
@@ -83,12 +80,10 @@ async function generatePacmanSvg({
   githubToken,
   gameTheme,
   outputPath,
-  terminalOutputPath,
 }) {
   const pacmanSvg = await renderPacmanSvg({ ArcadeRenderer, githubUserName, githubToken, gameTheme });
 
   writeFileSync(outputPath, pacmanSvg);
-  writeFileSync(terminalOutputPath, wrapPacmanInTerminal(pacmanSvg, gameTheme));
 }
 
 function renderPacmanSvg({ ArcadeRenderer, githubUserName, githubToken, gameTheme }) {
