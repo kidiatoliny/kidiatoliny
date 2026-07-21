@@ -4,48 +4,66 @@
   <img alt="GitHub contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
 </picture>
 
-# kidiatoliny
+<h1 align="center">Kid Akira</h1>
 
-I build Laravel packages, payment integrations, developer tools, and operational platforms.
+<p align="center"><strong>Senior Product Engineer building payment systems, operational platforms, and developer infrastructure.</strong></p>
 
-Most of my work sits around Akira: Laravel packages, SISP and Vinti4 payment tooling for Cabo Verde, API tooling, billing SDKs, mobile apps, and systems used by transport and service teams.
+<p align="center">
+  <a href="https://kid.akira-io.com">Website</a> ·
+  <a href="https://packages.akira-io.com">Akira Packages</a> ·
+  <a href="https://github.com/akira-io">Open Source</a>
+</p>
 
-[Website](https://kid.akira-io.com) · [Akira packages](https://packages.akira-io.com) · [Akira on GitHub](https://github.com/akira-io)
+I design and ship software across the product lifecycle, from payment infrastructure and transport operations to developer tools and open-source ecosystems. My work connects product decisions with architecture, delivery, and long-term maintenance.
 
-## Current Focus
+## What I Build
 
-- Akira package ecosystem for PHP, Laravel, Node.js, TypeScript, Go, and Rust.
-- SISP and Vinti4 payment integrations for Laravel and Node.js.
-- NosFerry ticketing, passenger operations, refunds, and back-office workflows.
-- API inspection and developer tooling through Spectra and related packages.
-- Unified Dev as a workspace for developer productivity, package operations, and automation.
-- React Native applications connected to the same product and payment systems.
-- Small, documented packages with clear tests, stable APIs, and maintenance workflows.
+### Payments and commerce
 
-## Selected Work
+I build payment integrations and billing infrastructure around SISP and Vinti4 for Laravel, Node.js, TypeScript, Go, and Rust. The work spans gateway clients, signed requests, checkout flows, and the operational paths around a transaction.
 
-| Project | Area | Notes |
+### Transport and operations
+
+I work on [NosFerry](https://nosferry.com), a transport platform for ferry travel in Cabo Verde. Its systems cover ticketing, passenger operations, refunds, and the back-office workflows that keep those journeys moving.
+
+### Developer infrastructure
+
+Through [Akira](https://github.com/akira-io), I build packages, SDKs, and desktop tooling that turn repeated engineering work into maintained interfaces. This includes API inspection with [Spectra Desktop](https://spectra-desktop.app) and project operations with [Unified Dev](https://www.unifieddev.app).
+
+## Selected Systems
+
+| System | What it handles | Engineering focus |
 | --- | --- | --- |
-| [Laravel QRCode](https://github.com/akira-io/laravel-qrcode) | Laravel package | QR code generation for Laravel applications. |
-| [Laravel SISP](https://github.com/akira-io/laravel-sisp) | Payments | SISP and Vinti4 payment integration for Laravel. |
-| [Node SISP](https://github.com/akira-io/node-sisp) | Payments | SISP and Vinti4 client for Node.js applications. |
-| [Laravel PDF Invoices](https://github.com/akira-io/laravel-pdf-invoices) | Laravel package | Invoice generation for Laravel 12 and PHP 8.4 applications. |
-| [Laravel Auth Logs](https://github.com/akira-io/laravel-auth-logs) | Security | Authentication activity tracking with notifications and context. |
-| [Laravel Commentable](https://github.com/akira-io/laravel-commentable) | Laravel package | Comment system package for Eloquent models. |
-| [Spectra Desktop](https://spectra-desktop.app) | Developer tool | Local-first API workbench for route detection, auth capture, and request schema inference. |
-| [Unified Dev](https://www.unifieddev.app) | Developer productivity | Workspace tooling for packages, project setup, release work, and automation. |
-| [NosFerry](https://nosferry.com) | Transport platform | Ticketing and passenger operations for ferry travel in Cabo Verde. |
+| [NosFerry](https://nosferry.com) | Ferry ticketing, passenger operations, refunds, and internal workflows | Product ownership, transactional workflows, operational tooling |
+| [SISP ecosystem](https://github.com/akira-io/laravel-sisp) | Payment gateway clients for Laravel and Node.js, with billing SDKs across multiple languages | Provider boundaries, public APIs, payment flows |
+| [Spectra Desktop](https://spectra-desktop.app) | Local-first API inspection, route detection, authentication capture, and schema inference | Desktop architecture, developer experience, local tooling |
+| [Unified Dev](https://www.unifieddev.app) | Project setup, package operations, release workflows, and automation | Workflow design, product engineering, automation |
+| [Akira Open Source](https://github.com/akira-io) | Packages and SDKs across PHP, TypeScript, Go, and Rust | API design, documentation, testing, versioned maintenance |
 
-## Stack
+## Open Source
 
-- Languages: PHP, TypeScript, Go, and Rust.
-- Backend: Laravel, Node.js, REST APIs, queues, billing, and payment flows.
-- Frontend: React, Inertia, Vue, Livewire, and Tailwind CSS.
-- Mobile: React Native and SwiftUI.
-- Systems: Go and Rust SDKs, desktop support libraries, and provider abstractions.
-- Data: PostgreSQL, MySQL, SQLite, Redis, and MongoDB.
-- Operations: Docker, GitHub Actions, Pest, and PHPStan.
-- Product domains: payments, ticketing, licensing, package distribution, API tooling, and operations software.
+| Project | Contribution |
+| --- | --- |
+| [Laravel QRCode](https://github.com/akira-io/laravel-qrcode) | A focused QR code API for Laravel applications |
+| [Laravel SISP](https://github.com/akira-io/laravel-sisp) and [Node SISP](https://github.com/akira-io/node-sisp) | SISP and Vinti4 payment integrations across PHP and TypeScript |
+| [Laravel PDF Invoices](https://github.com/akira-io/laravel-pdf-invoices) | A typed and extensible invoice package for modern Laravel applications |
+| [Onyx](https://github.com/akira-io/onyx) and [Onyx RS](https://github.com/akira-io/onyx-rs) | Cross-platform foundations for desktop applications in Go and Rust |
+| [Git Cognition](https://github.com/akira-io/git-cognition-rs) and [Omnitrack](https://github.com/akira-io/omnitrack-rs) | Async provider abstractions for version control and issue tracking in Rust |
+
+## Across the Stack
+
+- **Backend and platforms:** PHP, Laravel, Node.js, queues, APIs, billing, and payment flows.
+- **Web:** TypeScript, React, Inertia, Vue, Livewire, and Tailwind CSS.
+- **Mobile and Apple platforms:** React Native, Swift, and SwiftUI.
+- **Systems and SDKs:** Go and Rust.
+- **Data and delivery:** PostgreSQL, MySQL, SQLite, Redis, Docker, GitHub Actions, Pest, and PHPStan.
+
+## Engineering Principles
+
+- Stable interfaces over clever internals. Public APIs are product surfaces.
+- Typed boundaries around external systems. Payment providers, SDKs, and platform services need explicit contracts.
+- Tests and documentation ship with the feature. Maintenance starts before release.
+- Automation should remove operational repetition without hiding how the system works.
 
 ## GitHub Activity
 
@@ -56,9 +74,4 @@ Most of my work sits around Akira: Laravel packages, SISP and Vinti4 payment too
 
 ## Contact
 
-- Website: [kid.akira-io.com](https://kid.akira-io.com)
-- Packages: [packages.akira-io.com](https://packages.akira-io.com)
-- X: [@kidiatoliny](https://x.com/kidiatoliny)
-- LinkedIn: [kidiatoliny](https://www.linkedin.com/in/kidiatoliny)
-- Bluesky: [kidiatoliny](https://bsky.app/profile/kidiatoliny.bsky.social)
-- Email: [kid@akira-io.com](mailto:kid@akira-io.com)
+[Website](https://kid.akira-io.com) · [Packages](https://packages.akira-io.com) · [GitHub](https://github.com/kidiatoliny) · [LinkedIn](https://www.linkedin.com/in/kidiatoliny) · [Email](mailto:kid@akira-io.com)
