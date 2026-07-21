@@ -1,15 +1,10 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
-import { fetchGitHubProfileStats } from './github-profile-stats.mjs';
-import { renderGitHubStatsTerminal } from './github-stats-terminal.mjs';
-import { wrapPacmanInTerminal } from './pacman-terminal.mjs';
-
 const generatorPath =
   process.env.PACMAN_GENERATOR_PATH ?? '/tmp/pacman-contribution-graph/dist/pacman-contribution-graph.js';
 const githubToken = process.env.GITHUB_TOKEN;
 const githubUserName = process.env.GITHUB_REPOSITORY_OWNER;
-const currentYear = new Date().getUTCFullYear();
 
 if (!githubToken) {
   throw new Error('GITHUB_TOKEN is required.');
@@ -20,8 +15,6 @@ if (!githubUserName) {
 }
 
 patchGeneratorForCurrentYear(generatorPath);
-
-console.log('Pacman generator patched for the current year.');
 
 const { ArcadeRenderer } = await import(pathToFileURL(generatorPath).href);
 
@@ -35,8 +28,6 @@ await generatePacmanSvg({
   outputPath: 'dist/pacman-contribution-graph.svg',
 });
 
-console.log('Light Pacman terminal generated.');
-
 await generatePacmanSvg({
   ArcadeRenderer,
   githubUserName,
@@ -45,24 +36,8 @@ await generatePacmanSvg({
   outputPath: 'dist/pacman-contribution-graph-dark.svg',
 });
 
-console.log('Dark Pacman terminal generated.');
-
-console.log('Fetching GitHub profile statistics.');
-
-const profileStats = await fetchGitHubProfileStats({
-  token: githubToken,
-  username: githubUserName,
-  year: currentYear,
-});
-
-console.log('GitHub profile statistics fetched.');
-
-writeFileSync('dist/github-stats.svg', renderGitHubStatsTerminal(profileStats, 'github'));
-writeFileSync('dist/github-stats-dark.svg', renderGitHubStatsTerminal(profileStats, 'github-dark'));
-
-console.log('GitHub statistics terminals generated.');
-
 function patchGeneratorForCurrentYear(generatorPath) {
+  const currentYear = new Date().getUTCFullYear();
   const from = `${currentYear}-01-01T00:00:00Z`;
   const to = new Date().toISOString();
   let source = readFileSync(generatorPath, 'utf8');
@@ -88,8 +63,7 @@ function patchGeneratorForCurrentYear(generatorPath) {
 }
 
 async function generatePacmanSvg({ ArcadeRenderer, githubUserName, githubToken, gameTheme, outputPath }) {
-  const pacmanSvg = await renderPacmanSvg({ ArcadeRenderer, githubUserName, githubToken, gameTheme });
-  const svg = wrapPacmanInTerminal(pacmanSvg, gameTheme);
+  const svg = await renderPacmanSvg({ ArcadeRenderer, githubUserName, githubToken, gameTheme });
 
   writeFileSync(outputPath, svg);
 }

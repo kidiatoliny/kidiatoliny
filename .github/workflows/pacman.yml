@@ -1,4 +1,4 @@
-name: Generate profile assets
+name: Generate pacman animation
 
 on:
   schedule:
@@ -25,12 +25,12 @@ jobs:
       - name: Checkout pacman generator
         run: git clone --depth 1 https://github.com/abozanona/pacman-contribution-graph.git /tmp/pacman-contribution-graph
 
-      - name: Generate profile SVG assets
+      - name: Generate current-year pacman contribution graph
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-pacman-current-year.mjs
 
-      - name: Push profile assets to the output branch
+      - name: Push pacman contribution graph to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title description">
+  <title id="title">Kidiatoliny terminal profile</title>
+  <desc id="description">A macOS terminal window showing Kidiatoliny and current engineering focus.</desc>
+  <defs>
+    <linearGradient id="window" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161b22"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#010409" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="300" rx="18" fill="#010409" fill-opacity="0"/>
+  <g filter="url(#shadow)">
+    <rect x="20" y="18" width="1160" height="264" rx="16" fill="url(#window)" stroke="#30363d" stroke-width="2"/>
+    <path d="M36 19h1128a15 15 0 0 1 15 15v36H21V34a15 15 0 0 1 15-15Z" fill="#21262d"/>
+    <path d="M21 70h1158" stroke="#30363d" stroke-width="2"/>
+
+    <circle cx="52" cy="44" r="9" fill="#ff5f57"/>
+    <circle cx="80" cy="44" r="9" fill="#febc2e"/>
+    <circle cx="108" cy="44" r="9" fill="#28c840"/>
+
+    <text x="600" y="49" fill="#8b949e" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="15" text-anchor="middle">kidiatoliny@github · zsh</text>
+
+    <text x="52" y="108" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="18" xml:space="preserve">
+      <tspan x="52" fill="#7ee787">kidiatoliny@github</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#79c0ff">~</tspan><tspan fill="#8b949e">$</tspan><tspan fill="#e6edf3"> whoami</tspan>
+    </text>
+    <text x="52" y="140" fill="#f0f6fc" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="19" font-weight="600">Kidiatoliny</text>
+
+    <text x="52" y="188" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="18" xml:space="preserve">
+      <tspan x="52" fill="#7ee787">kidiatoliny@github</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#79c0ff">~</tspan><tspan fill="#8b949e">$</tspan><tspan fill="#e6edf3"> current-focus</tspan>
+    </text>
+    <text x="52" y="220" fill="#c9d1d9" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="18">product systems · Apple platforms · AI and machine learning · developer tools</text>
+
+    <text x="52" y="258" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="18">
+      <tspan fill="#7ee787">kidiatoliny@github</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#79c0ff">~</tspan><tspan fill="#8b949e">$</tspan>
+    </text>
+    <rect x="272" y="242" width="10" height="20" rx="1" fill="#7ee787"/>
+  </g>
+</svg>
