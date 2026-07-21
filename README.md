@@ -1,15 +1,11 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
-  <img alt="GitHub contribution graph" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/pacman-contribution-graph.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/terminal-pacman-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/terminal-pacman.svg">
+  <img alt="Animated Pacman contribution graph running inside a macOS terminal" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/terminal-pacman.svg">
 </picture>
 
 <p align="center">
-  <img src="assets/terminal.svg" width="100%" alt="macOS terminal showing Kidiatoliny and current engineering focus">
-</p>
-
-<p align="center">
-  I build production systems and open-source tools across backend, web, mobile, and desktop.
+  <strong>Product engineer building production systems, native Apple products, and open-source infrastructure.</strong>
 </p>
 
 <p align="center">
@@ -19,48 +15,56 @@
   <a href="mailto:kid@akira-io.com">contact</a>
 </p>
 
-## ~/work
+## ~/selected-work
 
-### `products/`
+<p>
+  <a href="https://nosferry.com">
+    <img src="assets/work-nosferry.svg" width="100%" alt="NosFerry, a production ferry operations platform for Cabo Verde">
+  </a>
+</p>
 
-[`nosferry`](https://nosferry.com) · [`hunter`](https://github.com/kidiatoliny/hunter) · [`unified-dev`](https://github.com/akira-foundation/unified-dev) · [`spectra-desktop`](https://spectra-desktop.app)
+<p>
+  <a href="https://github.com/akira-foundation/dotsync">
+    <img src="assets/work-apple-native.svg" width="100%" alt="Native macOS and iOS products built with Swift and SwiftUI">
+  </a>
+</p>
 
-### `apple-native/`
+<p>
+  <a href="https://github.com/akira-io">
+    <img src="assets/work-akira.svg" width="100%" alt="Akira open-source product infrastructure">
+  </a>
+</p>
 
-[`dotsync`](https://github.com/akira-foundation/dotsync) · `hodos` · `audio-analysis` · `planning-assistant`
+<p>
+  <a href="https://github.com/kidiatoliny/hunter">
+    <img src="assets/work-hunter.svg" width="100%" alt="Hunter, an open-source network for Cape Verdean builders">
+  </a>
+</p>
 
-### `payments-and-fiscal/`
+## ~/project-explorer
 
-[`laravel-sisp`](https://github.com/akira-io/laravel-sisp) · [`node-sisp`](https://github.com/akira-io/node-sisp) · [`payable`](https://github.com/akira-io/payable) · [`node-efatura`](https://github.com/akira-io/node-efatura) · [`billing-sdk-go`](https://github.com/akira-io/billing-sdk-go) · [`billing-sdk-rust`](https://github.com/akira-io/billing-sdk-rust) · [`billing-sdk-js`](https://github.com/akira-io/billing-sdk-js)
+<p>
+  <a href="https://github.com/kidiatoliny?tab=repositories">
+    <img src="assets/project-explorer.svg" width="100%" alt="Projects grouped across products, Apple native, payments, foundations, and applied intelligence">
+  </a>
+</p>
 
-### `laravel/`
-
-[`qrcode`](https://github.com/akira-io/laravel-qrcode) · [`pdf-invoices`](https://github.com/akira-io/laravel-pdf-invoices) · [`auth-logs`](https://github.com/akira-io/laravel-auth-logs) · [`commentable`](https://github.com/akira-io/laravel-commentable) · [`rag`](https://github.com/kidiatoliny/laravel-rag) · [`spectra`](https://github.com/kidiatoliny/laravel-spectra) · [`license-core`](https://github.com/kidiatoliny/laravel-license-core)
-
-### `systems/`
-
-[`onyx`](https://github.com/akira-io/onyx) · [`onyx-rs`](https://github.com/akira-io/onyx-rs) · [`git-cognition`](https://github.com/akira-io/git-cognition-rs) · [`omnitrack`](https://github.com/akira-io/omnitrack-rs)
-
-## ~/apple-native
-
-Native macOS and iOS products built with Swift and SwiftUI. The work spans transport and navigation, audio analysis, menu bar utilities, widgets, App Intents, Live Activities, OCR, SwiftData, Keychain, and on-device intelligence.
-
-## ~/platforms
-
-**[NosFerry](https://nosferry.com)** covers ticketing, passenger operations, refunds, company sales, support, audit, HR, and back-office systems for ferry travel in Cabo Verde.
-
-**[Akira](https://github.com/akira-io)** connects payment integrations, billing SDKs, fiscal tooling, desktop foundations, and developer infrastructure across multiple languages.
+Production work stays in `~/work`. Deep learning and cybersecurity remain in `~/learning`. [Browse all repositories](https://github.com/kidiatoliny?tab=repositories).
 
 ## ~/learning
 
-`deep-learning` · `cybersecurity`
+Deep learning and cybersecurity are active study tracks. They stay separate from the production work and open-source systems above.
 
-## ~/toolbox
-
-`Swift` · `SwiftUI` · `PHP` · `TypeScript` · `Go` · `Rust`
-
-`Laravel` · `React` · `React Native` · `Tauri` · `Wails` · `Apple Intelligence` · `MLX`
+`deep learning` · `cybersecurity`
 
 ## ~/connect
 
 [website](https://kid.akira-io.com) · [packages](https://packages.akira-io.com) · [github](https://github.com/kidiatoliny) · [linkedin](https://www.linkedin.com/in/kidiatoliny) · [email](mailto:kid@akira-io.com)
+
+## ~/profile
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/github-stats-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/github-stats.svg">
+  <img alt="GitHub contributions, languages, and current engineering stack inside a macOS terminal" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/github-stats.svg">
+</picture>

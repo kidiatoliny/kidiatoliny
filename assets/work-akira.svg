@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="190" viewBox="0 0 1200 190" role="img" aria-labelledby="title description">
+  <title id="title">Akira</title>
+  <desc id="description">Open-source product infrastructure across payments, billing, fiscal systems, and developer tooling.</desc>
+  <style>
+    .card{fill:#f6f8fa;stroke:#d0d7de}.title{fill:#1f2328}.meta{fill:#57606a}.body{fill:#424a53}.stack{fill:#1a7f37}
+    @media (prefers-color-scheme:dark){.card{fill:#161b22;stroke:#30363d}.title{fill:#f0f6fc}.meta{fill:#8b949e}.body{fill:#c9d1d9}.stack{fill:#7ee787}}
+  </style>
+  <rect class="card" x="1" y="1" width="1198" height="188" rx="16"/>
+  <rect x="1" y="1" width="7" height="188" rx="4" fill="#1a7f37"/>
+  <text class="title" x="36" y="48" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28" font-weight="700">Akira</text>
+  <text class="meta" x="1164" y="46" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15">OPEN-SOURCE INFRASTRUCTURE</text>
+  <text class="body" x="36" y="90" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="19">Payment integrations, billing SDKs, fiscal tooling, desktop foundations, and developer products</text>
+  <text class="body" x="36" y="118" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="19">including Unified Dev and Spectra Desktop.</text>
+  <text class="stack" x="36" y="158" font-family="SFMono-Regular, Consolas, monospace" font-size="16" font-weight="600">PHP · TypeScript · Go · Rust · Tauri · Wails</text>
+</svg>
