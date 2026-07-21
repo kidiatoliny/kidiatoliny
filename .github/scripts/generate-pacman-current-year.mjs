@@ -21,6 +21,8 @@ if (!githubUserName) {
 
 patchGeneratorForCurrentYear(generatorPath);
 
+console.log('Pacman generator patched for the current year.');
+
 const { ArcadeRenderer } = await import(pathToFileURL(generatorPath).href);
 
 mkdirSync('dist', { recursive: true });
@@ -33,6 +35,8 @@ await generatePacmanSvg({
   outputPath: 'dist/pacman-contribution-graph.svg',
 });
 
+console.log('Light Pacman terminal generated.');
+
 await generatePacmanSvg({
   ArcadeRenderer,
   githubUserName,
@@ -41,14 +45,22 @@ await generatePacmanSvg({
   outputPath: 'dist/pacman-contribution-graph-dark.svg',
 });
 
+console.log('Dark Pacman terminal generated.');
+
+console.log('Fetching GitHub profile statistics.');
+
 const profileStats = await fetchGitHubProfileStats({
   token: githubToken,
   username: githubUserName,
   year: currentYear,
 });
 
+console.log('GitHub profile statistics fetched.');
+
 writeFileSync('dist/github-stats.svg', renderGitHubStatsTerminal(profileStats, 'github'));
 writeFileSync('dist/github-stats-dark.svg', renderGitHubStatsTerminal(profileStats, 'github-dark'));
+
+console.log('GitHub statistics terminals generated.');
 
 function patchGeneratorForCurrentYear(generatorPath) {
   const from = `${currentYear}-01-01T00:00:00Z`;
