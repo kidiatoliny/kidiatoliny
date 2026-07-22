@@ -3,18 +3,18 @@
   <rect x="1" y="1" width="1198" height="518" rx="22" fill="#080b12" stroke="#263145" stroke-width="2"/>
   <text x="28" y="48" fill="#f4f7fb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="29" font-weight="850">Selected work</text>
   <text x="1172" y="46" text-anchor="end" fill="#7f8ba0" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="700" letter-spacing="2">PROOF BEFORE CATALOG</text>
-  <rect x="18" y="72" width="710" height="430" rx="17" fill="#78a9ff"/>
+  <rect x="18" y="72" width="710" height="430" rx="17" fill="#9B7BFF"/>
   <text x="48" y="131" fill="#07111f" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="45" font-weight="900">NosFerry</text>
   <text x="48" y="178" fill="#0b1b34" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="20" font-weight="600">Production infrastructure for ticketing, passenger operations,</text>
   <text x="48" y="208" fill="#0b1b34" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="20" font-weight="600">refunds, company sales, support, audit, HR,</text>
   <text x="48" y="238" fill="#0b1b34" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="20" font-weight="600">and back-office workflows.</text>
   <text x="48" y="432" fill="#0b1b34" font-family="SFMono-Regular,Consolas,monospace" font-size="15" font-weight="700">LARAVEL · REACT · REACT NATIVE · POSTGRESQL · REDIS</text>
   <text x="692" y="150" text-anchor="end" fill="#07111f" opacity=".09" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="110" font-weight="900">01</text>
-  <rect x="746" y="72" width="436" height="205" rx="17" fill="#8065e7"/>
-  <text x="774" y="125" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="32" font-weight="850">Apple native</text>
-  <text x="774" y="163" fill="#ede8ff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="17">macOS and iOS products across navigation, audio,</text>
-  <text x="774" y="188" fill="#ede8ff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="17">Live Activities, OCR, and on-device intelligence.</text>
-  <text x="774" y="239" fill="#ffffff" font-family="SFMono-Regular,Consolas,monospace" font-size="14" font-weight="700">SWIFT · SWIFTUI · SWIFTDATA · MLX</text>
+  <rect x="746" y="72" width="436" height="205" rx="17" fill="#FF8066"/>
+  <text x="774" y="125" fill="#1b0c08" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="32" font-weight="850">Apple native</text>
+  <text x="774" y="163" fill="#3c160e" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="17">macOS and iOS products across navigation, audio,</text>
+  <text x="774" y="188" fill="#3c160e" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="17">Live Activities, OCR, and on-device intelligence.</text>
+  <text x="774" y="239" fill="#1b0c08" font-family="SFMono-Regular,Consolas,monospace" font-size="14" font-weight="700">SWIFT · SWIFTUI · SWIFTDATA · MLX</text>
   <rect x="746" y="295" width="436" height="207" rx="17" fill="#111722" stroke="#263145"/>
   <text x="774" y="350" fill="#f4f7fb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="32" font-weight="850">Akira</text>
   <text x="774" y="389" fill="#aeb8c8" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="17">Payments, fiscal tooling, SDKs, desktop</text>
