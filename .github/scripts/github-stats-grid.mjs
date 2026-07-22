@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const WIDTH = 1200;
-const HEIGHT = 560;
+const HEIGHT = 610;
 const FONT = 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
 const MONO = 'SFMono-Regular, Consolas, Liberation Mono, monospace';
 
@@ -17,10 +17,10 @@ const STACK = [
 ];
 
 const LANGUAGE_COLORS = {
-  PHP: '#777bb4',
+  'PHP + Laravel': '#777bb4',
   TypeScript: '#3178c6',
   JavaScript: '#f1e05a',
-  Swift: '#f05138',
+  'Swift + SwiftUI': '#f05138',
   Rust: '#dea584',
   Go: '#00add8',
   CSS: '#563d7c',
@@ -48,16 +48,16 @@ export function renderGitHubStatsGrid(stats, theme = 'github') {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-labelledby="stats-title stats-description">
   <title id="stats-title">Kidiatoliny GitHub signal</title>
-  <desc id="stats-description">Contribution statistics for ${stats.year}, top public repository languages, and current engineering stack.</desc>
-  <rect width="1200" height="560" rx="22" fill="${palette.background}" stroke="${palette.border}" stroke-width="2"/>
+  <desc id="stats-description">Contribution statistics for ${stats.year}, a six-language public technology footprint aggregated across four repository owners, and the current engineering stack. Swift represents Swift and SwiftUI work; PHP represents PHP and Laravel work.</desc>
+  <rect width="${WIDTH}" height="${HEIGHT}" rx="22" fill="${palette.background}" stroke="${palette.border}" stroke-width="2"/>
   <text x="28" y="50" fill="${palette.text}" font-family="${FONT}" font-size="30" font-weight="800">GitHub signal</text>
   <text x="1172" y="45" fill="${palette.muted}" font-family="${MONO}" font-size="13" font-weight="700" letter-spacing="3" text-anchor="end">PUBLIC ACTIVITY · ${stats.year}</text>
   ${cards.map(([label, value], index) => renderStatCard(label, value, index, palette)).join('\n  ')}
-  <rect x="18" y="224" width="482" height="314" rx="18" fill="${palette.surface}" stroke="${palette.border}"/>
-  <text x="42" y="266" fill="${palette.blue}" font-family="${FONT}" font-size="20" font-weight="750">Language distribution</text>
-  <text x="42" y="291" fill="${palette.muted}" font-family="${MONO}" font-size="12" letter-spacing="1.5">TOP PUBLIC REPOSITORIES</text>
+  <rect x="18" y="224" width="482" height="368" rx="18" fill="${palette.surface}" stroke="${palette.border}"/>
+  <text x="42" y="266" fill="${palette.blue}" font-family="${FONT}" font-size="20" font-weight="750">Core technology footprint</text>
+  <text x="42" y="291" fill="${palette.muted}" font-family="${MONO}" font-size="12" letter-spacing="1.5">PUBLIC REPOSITORIES · 4 OWNERS</text>
   ${renderLanguages(stats.languages, palette)}
-  <rect x="518" y="224" width="664" height="314" rx="18" fill="${palette.surface}" stroke="${palette.border}"/>
+  <rect x="518" y="224" width="664" height="368" rx="18" fill="${palette.surface}" stroke="${palette.border}"/>
   <text x="542" y="266" fill="${palette.text}" font-family="${FONT}" font-size="20" font-weight="750">Current stack</text>
   <text x="1158" y="264" fill="${palette.muted}" font-family="${MONO}" font-size="12" letter-spacing="1.5" text-anchor="end">TOOLS IN ACTIVE USE</text>
   ${renderStack(palette)}
@@ -129,11 +129,12 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     currentStreak: 18,
     longestStreak: 47,
     languages: [
-      { name: 'PHP', share: 42 },
-      { name: 'TypeScript', share: 27 },
-      { name: 'Swift', share: 16 },
-      { name: 'Rust', share: 9 },
-      { name: 'Go', share: 6 },
+      { name: 'PHP + Laravel', share: 36 },
+      { name: 'TypeScript', share: 24 },
+      { name: 'Swift + SwiftUI', share: 16 },
+      { name: 'Go', share: 10 },
+      { name: 'Rust', share: 8 },
+      { name: 'JavaScript', share: 6 },
     ],
   };
 

@@ -9,11 +9,12 @@ const stats = {
   currentStreak: 18,
   longestStreak: 47,
   languages: [
-    { name: 'PHP', share: 42 },
-    { name: 'TypeScript', share: 27 },
-    { name: 'Swift', share: 16 },
-    { name: 'Rust', share: 9 },
-    { name: 'Go', share: 6 },
+    { name: 'PHP + Laravel', share: 36 },
+    { name: 'TypeScript', share: 24 },
+    { name: 'Swift + SwiftUI', share: 16 },
+    { name: 'Go', share: 10 },
+    { name: 'Rust', share: 8 },
+    { name: 'JavaScript', share: 6 },
   ],
 };
 
@@ -23,10 +24,15 @@ test('renders contributions, streaks, languages, and current stack', () => {
   assert.match(svg, /2,451/u);
   assert.match(svg, /18 days/u);
   assert.match(svg, /47 days/u);
+  assert.match(svg, /Core technology footprint/u);
+  assert.match(svg, /PUBLIC REPOSITORIES · 4 OWNERS/u);
+  assert.match(svg, /Swift \+ SwiftUI/u);
+  assert.match(svg, /PHP \+ Laravel/u);
   assert.match(svg, /TypeScript/u);
+  assert.match(svg, /JavaScript/u);
   assert.match(svg, /Swift · SwiftUI · SwiftData/u);
   assert.match(svg, /App Intents · Live Activities/u);
-  assert.doesNotMatch(svg, /pull requests|commits|terminal|zsh|github-stats --year/u);
+  assert.doesNotMatch(svg, /Language distribution|TOP PUBLIC REPOSITORIES|pull requests|commits|terminal|zsh|github-stats --year/u);
 });
 
 test('renders explicit light and dark palettes', () => {

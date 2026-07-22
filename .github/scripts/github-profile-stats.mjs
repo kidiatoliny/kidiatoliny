@@ -1,7 +1,23 @@
 const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
+const TECHNOLOGY_SIGNALS = new Map([
+  ['Swift', 'Swift + SwiftUI'],
+  ['PHP', 'PHP + Laravel'],
+  ['Go', 'Go'],
+  ['Rust', 'Rust'],
+  ['TypeScript', 'TypeScript'],
+  ['JavaScript', 'JavaScript'],
+]);
 
 const PROFILE_STATS_QUERY = `
-  query ProfileStats($login: String!, $from: DateTime!, $to: DateTime!) {
+  query ProfileStats(
+    $login: String!
+    $personalLogin: String!
+    $akiraIoLogin: String!
+    $akiraFoundationLogin: String!
+    $nosFerryLogin: String!
+    $from: DateTime!
+    $to: DateTime!
+  ) {
     user(login: $login) {
       contributionsCollection(from: $from, to: $to) {
         contributionCalendar {
@@ -14,7 +30,23 @@ const PROFILE_STATS_QUERY = `
           }
         }
       }
-      repositories(
+    }
+    personal: repositoryOwner(login: $personalLogin) {
+      ...RepositoryLanguages
+    }
+    akiraIo: repositoryOwner(login: $akiraIoLogin) {
+      ...RepositoryLanguages
+    }
+    akiraFoundation: repositoryOwner(login: $akiraFoundationLogin) {
+      ...RepositoryLanguages
+    }
+    nosFerry: repositoryOwner(login: $nosFerryLogin) {
+      ...RepositoryLanguages
+    }
+  }
+
+  fragment RepositoryLanguages on RepositoryOwner {
+    repositories(
         first: 100
         isFork: false
         ownerAffiliations: OWNER
@@ -32,7 +64,6 @@ const PROFILE_STATS_QUERY = `
           }
         }
       }
-    }
   }
 `;
 
@@ -78,20 +109,29 @@ export function normalizeGitHubProfileStats(payload, today) {
   const calendar = user.contributionsCollection.contributionCalendar;
   const days = calendar.weeks.flatMap((week) => week.contributionDays);
   const streaks = calculateStreaks(days, today);
-  const languageSizes = new Map();
+  const languageSizes = new Map([...TECHNOLOGY_SIGNALS.keys()].map((language) => [language, 0]));
+  const repositoryOwners = [
+    payload.data.personal,
+    payload.data.akiraIo,
+    payload.data.akiraFoundation,
+    payload.data.nosFerry,
+  ].filter(Boolean);
 
-  for (const repository of user.repositories.nodes) {
-    for (const edge of repository.languages?.edges ?? []) {
-      languageSizes.set(edge.node.name, (languageSizes.get(edge.node.name) ?? 0) + edge.size);
+  for (const owner of repositoryOwners) {
+    for (const repository of owner.repositories?.nodes ?? []) {
+      for (const edge of repository.languages?.edges ?? []) {
+        if (TECHNOLOGY_SIGNALS.has(edge.node.name)) {
+          languageSizes.set(edge.node.name, languageSizes.get(edge.node.name) + edge.size);
+        }
+      }
     }
   }
 
-  const topLanguages = [...languageSizes.entries()]
-    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
-    .slice(0, 5);
-  const totalLanguageSize = topLanguages.reduce((total, [, size]) => total + size, 0);
-  const languages = topLanguages.map(([name, size]) => ({
-    name,
+  const selectedLanguages = [...languageSizes.entries()]
+    .sort((left, right) => right[1] - left[1]);
+  const totalLanguageSize = selectedLanguages.reduce((total, [, size]) => total + size, 0);
+  const languages = selectedLanguages.map(([language, size]) => ({
+    name: TECHNOLOGY_SIGNALS.get(language),
     share: totalLanguageSize === 0 ? 0 : Math.round((size / totalLanguageSize) * 100),
   }));
 
@@ -128,6 +168,10 @@ export async function fetchGitHubProfileStats({
       query: PROFILE_STATS_QUERY,
       variables: {
         login: username,
+        personalLogin: username,
+        akiraIoLogin: 'akira-io',
+        akiraFoundationLogin: 'akira-foundation',
+        nosFerryLogin: 'Nos-Ferry',
         from: `${year}-01-01T00:00:00Z`,
         to: `${today}T23:59:59Z`,
       },
