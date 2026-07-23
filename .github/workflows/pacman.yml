@@ -2,7 +2,7 @@ name: Generate profile assets
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     branches:
