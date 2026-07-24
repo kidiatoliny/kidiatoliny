@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="stats-title stats-description">
+  <title id="stats-title">Kidiatoliny GitHub signal</title>
+  <desc id="stats-description">Contribution statistics for 2026, a six-language public technology footprint aggregated across four repository owners, and the current engineering stack. Swift represents Swift and SwiftUI work; PHP represents PHP and Laravel work.</desc>
+  <rect width="1200" height="610" rx="22" fill="#f7f8fa" stroke="#d8dee8" stroke-width="2"/>
+  <text x="28" y="50" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="30" font-weight="800">GitHub signal</text>
+  <text x="1172" y="45" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="13" font-weight="700" letter-spacing="3" text-anchor="end">PUBLIC ACTIVITY · 2026</text>
+  <g>
+    <rect x="18" y="72" width="376" height="132" rx="18" fill="#b7f51d" stroke="#d8dee8"/>
+    <text x="42" y="109" fill="#172000" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="2">CONTRIBUTIONS</text>
+    <text x="42" y="167" fill="#172000" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="45" font-weight="850">14,237</text>
+  </g>
+  <g>
+    <rect x="412" y="72" width="376" height="132" rx="18" fill="#ffffff" stroke="#d8dee8"/>
+    <text x="436" y="109" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="2">CURRENT STREAK</text>
+    <text x="436" y="167" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="45" font-weight="850">44 days</text>
+  </g>
+  <g>
+    <rect x="806" y="72" width="376" height="132" rx="18" fill="#ffffff" stroke="#d8dee8"/>
+    <text x="830" y="109" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="2">LONGEST STREAK</text>
+    <text x="830" y="167" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="45" font-weight="850">63 days</text>
+  </g>
+  <rect x="18" y="224" width="482" height="368" rx="18" fill="#ffffff" stroke="#d8dee8"/>
+  <text x="42" y="266" fill="#2867e8" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="750">Core technology footprint</text>
+  <text x="42" y="291" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" letter-spacing="1.5">PUBLIC REPOSITORIES · 4 OWNERS</text>
+  <g>
+      <circle cx="48" cy="328" r="5" fill="#3178c6"/>
+      <text x="62" y="332" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="650">TypeScript</text>
+      <rect x="190" y="318" width="260" height="10" rx="5" fill="#eef2f7"/>
+      <rect x="190" y="318" width="153" height="10" rx="5" fill="#3178c6"/>
+      <text x="474" y="332" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="13" text-anchor="end">50%</text>
+    </g>
+  <g>
+      <circle cx="48" cy="371" r="5" fill="#777bb4"/>
+      <text x="62" y="375" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="650">PHP + Laravel</text>
+      <rect x="190" y="361" width="260" height="10" rx="5" fill="#eef2f7"/>
+      <rect x="190" y="361" width="98" height="10" rx="5" fill="#777bb4"/>
+      <text x="474" y="375" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="13" text-anchor="end">32%</text>
+    </g>
+  <g>
+      <circle cx="48" cy="414" r="5" fill="#dea584"/>
+      <text x="62" y="418" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="650">Rust</text>
+      <rect x="190" y="404" width="260" height="10" rx="5" fill="#eef2f7"/>
+      <rect x="190" y="404" width="46" height="10" rx="5" fill="#dea584"/>
+      <text x="474" y="418" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="13" text-anchor="end">15%</text>
+    </g>
+  <g>
+      <circle cx="48" cy="457" r="5" fill="#f05138"/>
+      <text x="62" y="461" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="650">Swift + SwiftUI</text>
+      <rect x="190" y="447" width="260" height="10" rx="5" fill="#eef2f7"/>
+      <rect x="190" y="447" width="12" height="10" rx="5" fill="#f05138"/>
+      <text x="474" y="461" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="13" text-anchor="end">1%</text>
+    </g>
+  <g>
+      <circle cx="48" cy="500" r="5" fill="#f1e05a"/>
+      <text x="62" y="504" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="650">JavaScript</text>
+      <rect x="190" y="490" width="260" height="10" rx="5" fill="#eef2f7"/>
+      <rect x="190" y="490" width="12" height="10" rx="5" fill="#f1e05a"/>
+      <text x="474" y="504" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="13" text-anchor="end">1%</text>
+    </g>
+  <g>
+      <circle cx="48" cy="543" r="5" fill="#00add8"/>
+      <text x="62" y="547" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="650">Go</text>
+      <rect x="190" y="533" width="260" height="10" rx="5" fill="#eef2f7"/>
+      <rect x="190" y="533" width="12" height="10" rx="5" fill="#00add8"/>
+      <text x="474" y="547" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="13" text-anchor="end">1%</text>
+    </g>
+  <rect x="518" y="224" width="664" height="368" rx="18" fill="#ffffff" stroke="#d8dee8"/>
+  <text x="542" y="266" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="750">Current stack</text>
+  <text x="1158" y="264" fill="#687386" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" letter-spacing="1.5" text-anchor="end">TOOLS IN ACTIVE USE</text>
+  <g>
+      <text x="542" y="318" fill="#2867e8" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="1.4">APPLICATIONS</text>
+      <text x="542" y="345" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" font-weight="550"><tspan x="542" dy="0">Laravel · React · React Native</tspan></text>
+    </g>
+  <g>
+      <text x="852" y="318" fill="#2867e8" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="1.4">APPLE NATIVE</text>
+      <text x="852" y="345" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" font-weight="550"><tspan x="852" dy="0">Swift · SwiftUI · SwiftData</tspan><tspan x="852" dy="20">App Intents · Live Activities</tspan></text>
+    </g>
+  <g>
+      <text x="542" y="393" fill="#2867e8" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="1.4">SYSTEMS</text>
+      <text x="542" y="420" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" font-weight="550"><tspan x="542" dy="0">Go · Rust · Tauri · Wails</tspan></text>
+    </g>
+  <g>
+      <text x="852" y="393" fill="#2867e8" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="1.4">INTELLIGENCE</text>
+      <text x="852" y="420" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" font-weight="550"><tspan x="852" dy="0">Apple Intelligence · MLX</tspan></text>
+    </g>
+  <g>
+      <text x="542" y="468" fill="#2867e8" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="1.4">DATA</text>
+      <text x="542" y="495" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" font-weight="550"><tspan x="542" dy="0">PostgreSQL · MySQL · SQLite · Redis</tspan></text>
+    </g>
+  <g>
+      <text x="852" y="468" fill="#2867e8" font-family="SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="1.4">OPERATIONS</text>
+      <text x="852" y="495" fill="#171b23" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14.5" font-weight="550"><tspan x="852" dy="0">Docker · GitHub Actions · Pest · PHPStan</tspan></text>
+    </g>
+</svg>
