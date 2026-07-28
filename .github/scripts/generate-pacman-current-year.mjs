@@ -3,6 +3,7 @@ import { pathToFileURL } from 'node:url';
 
 import { fetchGitHubProfileStats } from './github-profile-stats.mjs';
 import { renderGitHubStatsGrid } from './github-stats-grid.mjs';
+import { patchPacmanFrameLimit } from './pacman-generator-patch.mjs';
 
 const generatorPath =
   process.env.PACMAN_GENERATOR_PATH ?? '/tmp/pacman-contribution-graph/dist/pacman-contribution-graph.js';
@@ -70,6 +71,8 @@ function patchGeneratorForCurrentYear(generatorPath) {
 
     source = source.replace(searchValue, replacementValue);
   }
+
+  source = patchPacmanFrameLimit(source);
 
   writeFileSync(generatorPath, source);
 }
