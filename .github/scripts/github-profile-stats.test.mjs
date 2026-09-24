@@ -56,8 +56,8 @@ test('fetches profile stats through GitHub GraphQL', async () => {
     assert.equal(request.headers.authorization, 'Bearer github-token');
     assert.match(request.body, /contributionsCollection/u);
     assert.match(request.body, /repositoryOwner/u);
-    assert.match(request.body, /privacy: PUBLIC/u);
     assert.match(request.body, /isFork: false/u);
+    assert.doesNotMatch(request.body, /privacy: PUBLIC/u);
 
     const { variables } = JSON.parse(request.body);
 

@@ -39,7 +39,6 @@ const PROFILE_STATS_QUERY = `
         first: 100
         isFork: false
         ownerAffiliations: OWNER
-        privacy: PUBLIC
         orderBy: { field: UPDATED_AT, direction: DESC }
       ) {
         nodes {

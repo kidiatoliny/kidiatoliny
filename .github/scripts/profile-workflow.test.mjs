@@ -26,3 +26,14 @@ test('serves the ecosystem card from the output branch instead of a committed as
   assert.match(readme, /output\/signal-ecosystem-dark\.svg/u);
   assert.doesNotMatch(readme, /assets\/signal-ecosystem/u);
 });
+
+test('prefers the personal access token so private repositories reach the footprint', () => {
+  assert.match(workflow, /GITHUB_TOKEN: \$\{\{ secrets\.PROFILE_STATS_TOKEN \|\| secrets\.GITHUB_TOKEN \}\}/u);
+});
+
+test('keeps the deploy step on the workflow token', () => {
+  const deploy = workflow.slice(workflow.indexOf('Push profile assets'));
+
+  assert.match(deploy, /GITHUB_TOKEN: \$\{\{ secrets\.GITHUB_TOKEN \}\}/u);
+  assert.doesNotMatch(deploy, /PROFILE_STATS_TOKEN/u);
+});

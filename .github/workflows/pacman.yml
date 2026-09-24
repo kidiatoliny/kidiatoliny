@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate profile SVG assets
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN || secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-pacman-current-year.mjs
 
       - name: Push profile assets to the output branch

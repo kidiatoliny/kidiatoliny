@@ -119,6 +119,7 @@ test('fetches ecosystem counts through GitHub GraphQL for every owner', async ()
     assert.equal(request.headers.authorization, 'Bearer github-token');
     assert.match(request.body, /repositoryTopics/u);
     assert.match(request.body, /privacy: PUBLIC/u);
+    assert.doesNotMatch(request.body, /languages\(/u);
 
     const { variables } = JSON.parse(request.body);
 
