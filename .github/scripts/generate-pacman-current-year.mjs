@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
+import { fetchEcosystemCounts, readEcosystemConfig, renderEcosystemCard } from './ecosystem-card.mjs';
 import { fetchGitHubProfileStats } from './github-profile-stats.mjs';
 import { renderGitHubStatsGrid } from './github-stats-grid.mjs';
 import { patchPacmanFrameLimit } from './pacman-generator-patch.mjs';
@@ -49,6 +50,15 @@ const profileStats = await fetchGitHubProfileStats({
 
 writeFileSync('dist/github-stats.svg', renderGitHubStatsGrid(profileStats, 'github'));
 writeFileSync('dist/github-stats-dark.svg', renderGitHubStatsGrid(profileStats, 'github-dark'));
+
+const ecosystemConfig = readEcosystemConfig();
+const ecosystemCounts = await fetchEcosystemCounts({
+  token: githubToken,
+  topics: ecosystemConfig.categories.map((category) => category.topic),
+});
+
+writeFileSync('dist/signal-ecosystem.svg', renderEcosystemCard(ecosystemConfig, ecosystemCounts, 'github'));
+writeFileSync('dist/signal-ecosystem-dark.svg', renderEcosystemCard(ecosystemConfig, ecosystemCounts, 'github-dark'));
 
 function patchGeneratorForCurrentYear(generatorPath) {
   const from = `${currentYear}-01-01T00:00:00Z`;

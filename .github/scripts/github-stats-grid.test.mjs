@@ -25,7 +25,7 @@ test('renders contributions, streaks, languages, and current stack', () => {
   assert.match(svg, /18 days/u);
   assert.match(svg, /47 days/u);
   assert.match(svg, /Core technology footprint/u);
-  assert.match(svg, /PUBLIC REPOSITORIES · 4 OWNERS/u);
+  assert.match(svg, /PUBLIC REPOSITORIES · 5 OWNERS/u);
   assert.match(svg, /Swift \+ SwiftUI/u);
   assert.match(svg, /PHP \+ Laravel/u);
   assert.match(svg, /TypeScript/u);

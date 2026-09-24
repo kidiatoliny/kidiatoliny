@@ -1,0 +1,36 @@
+{
+  "title": "Engineering ecosystem",
+  "eyebrow": "BREADTH WITHOUT A REPOSITORY WALL",
+  "description": "Products, Apple-native software, payment systems, foundations, and research tracks.",
+  "categories": [
+    {
+      "topic": "akira-product",
+      "title": "Products",
+      "tone": "plain",
+      "lines": ["NosFerry · Hunter", "Unified Dev", "Spectra Desktop"]
+    },
+    {
+      "topic": "akira-apple-native",
+      "title": "Apple native",
+      "tone": "violet",
+      "lines": ["DotSync · Hodos", "Audio analysis", "Planning tools"]
+    },
+    {
+      "topic": "akira-payments",
+      "title": "Payments and fiscal",
+      "tone": "acid",
+      "lines": ["SISP · e-Fatura", "Payable", "Billing SDKs"]
+    },
+    {
+      "topic": "akira-foundations",
+      "title": "Foundations",
+      "tone": "inverse",
+      "lines": ["Laravel packages", "Onyx · Git Cognition", "Omnitrack"]
+    }
+  ],
+  "research": {
+    "eyebrow": "RESEARCH HORIZON",
+    "statement": "Active study, clearly separated from shipped work.",
+    "tracks": ["Deep learning", "Cybersecurity"]
+  }
+}

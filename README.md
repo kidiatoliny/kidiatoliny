@@ -38,9 +38,9 @@
 <br>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/signal-ecosystem-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/signal-ecosystem-light.svg">
-  <img width="100%" alt="Engineering ecosystem spanning products, Apple native software, payments and fiscal systems, foundations, deep learning, and cybersecurity studies" src="assets/signal-ecosystem-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/signal-ecosystem-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/signal-ecosystem.svg">
+  <img width="100%" alt="Engineering ecosystem spanning products, Apple native software, payments and fiscal systems, foundations, deep learning, and cybersecurity studies" src="https://raw.githubusercontent.com/kidiatoliny/kidiatoliny/output/signal-ecosystem.svg">
 </picture>
 
 <p align="center">
