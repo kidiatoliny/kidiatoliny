@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import { ownerAlias, ownerVariables } from './repository-owners.mjs';
+
 import {
   calculateStreaks,
   fetchGitHubProfileStats,
@@ -38,12 +40,13 @@ test('normalizes contribution totals and aggregates selected languages across al
   assert.equal(stats.currentStreak, 2);
   assert.equal(stats.longestStreak, 2);
   assert.deepEqual(stats.languages, [
-    { name: 'PHP + Laravel', share: 39 },
-    { name: 'TypeScript', share: 25 },
-    { name: 'Swift + SwiftUI', share: 13 },
-    { name: 'Go', share: 10 },
-    { name: 'Rust', share: 7 },
-    { name: 'JavaScript', share: 6 },
+    { name: 'PHP + Laravel', share: 43.8 },
+    { name: 'TypeScript', share: 24.2 },
+    { name: 'Swift + SwiftUI', share: 11.2 },
+    { name: 'Go', share: 9 },
+    { name: 'Rust', share: 6.2 },
+    { name: 'JavaScript', share: 5.6 },
+    { name: 'Python', share: 0 },
   ]);
   assert.equal(stats.languages.reduce((sum, language) => sum + language.share, 0), 100);
 });
@@ -58,10 +61,12 @@ test('fetches profile stats through GitHub GraphQL', async () => {
 
     const { variables } = JSON.parse(request.body);
 
-    assert.equal(variables.personalLogin, 'kidiatoliny');
-    assert.equal(variables.akiraIoLogin, 'akira-io');
-    assert.equal(variables.akiraFoundationLogin, 'akira-foundation');
-    assert.equal(variables.nosFerryLogin, 'Nos-Ferry');
+    assert.deepEqual(variables, {
+      ...ownerVariables(),
+      login: 'kidiatoliny',
+      from: '2026-01-01T00:00:00Z',
+      to: '2026-07-21T23:59:59Z',
+    });
 
     return {
       ok: true,
@@ -140,7 +145,7 @@ function createFixture() {
           ],
         },
       },
-      personal: {
+      [ownerAlias('kidiatoliny')]: {
         repositories: {
           nodes: [
             {
@@ -165,7 +170,7 @@ function createFixture() {
           ],
         },
       },
-      akiraIo: {
+      [ownerAlias('akira-io')]: {
         repositories: {
           nodes: [
             {
@@ -180,7 +185,7 @@ function createFixture() {
           ],
         },
       },
-      akiraFoundation: {
+      [ownerAlias('akira-foundation')]: {
         repositories: {
           nodes: [
             {
@@ -195,7 +200,7 @@ function createFixture() {
           ],
         },
       },
-      nosFerry: {
+      [ownerAlias('Nos-Ferry')]: {
         repositories: {
           nodes: [
             {
@@ -205,6 +210,20 @@ function createFixture() {
                   { size: 700, node: { name: 'TypeScript' } },
                   { size: 200, node: { name: 'JavaScript' } },
                   { size: 200, node: { name: 'Go' } },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      [ownerAlias('Bu-Payment')]: {
+        repositories: {
+          nodes: [
+            {
+              languages: {
+                edges: [
+                  { size: 900, node: { name: 'PHP' } },
+                  { size: 250, node: { name: 'TypeScript' } },
                 ],
               },
             },
