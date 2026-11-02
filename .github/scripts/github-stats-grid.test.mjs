@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { renderGitHubStatsGrid } from './github-stats-grid.mjs';
+import { CARDS, renderGitHubStatsGrid } from './github-stats-grid.mjs';
 
 const stats = {
   year: 2026,
@@ -32,6 +32,9 @@ test('renders contributions, streaks, languages, and current stack', () => {
   assert.match(svg, /JavaScript/u);
   assert.match(svg, /Swift · SwiftUI · SwiftData/u);
   assert.match(svg, /App Intents · Live Activities/u);
+  assert.match(svg, /Node · Bun · Vite/u);
+  assert.match(svg, /C · C\+\+ · LLVM · CMake/u);
+  assert.match(svg, /Bison · Flex · Tree-sitter/u);
   assert.doesNotMatch(svg, /Language distribution|TOP PUBLIC REPOSITORIES|pull requests|commits|terminal|zsh|github-stats --year/u);
 });
 
@@ -45,3 +48,29 @@ test('escapes dynamic language names', () => {
 
   assert.match(svg, /A&amp;B/u);
 });
+
+test('keeps every language row and stack entry inside its card', () => {
+  const svg = renderGitHubStatsGrid(
+    { ...stats, languages: Array.from({ length: 9 }, (_, index) => ({ name: `Language ${index}`, share: 1 })) },
+    'github',
+  );
+
+  assert.ok(lowestBaseline(svg, (x) => x < CARDS.stack.x) <= CARDS.languages.y + CARDS.languages.height);
+  assert.ok(lowestBaseline(svg, (x) => x >= CARDS.stack.x) <= CARDS.stack.y + CARDS.stack.height);
+});
+
+function lowestBaseline(svg, matchesColumn) {
+  let lowest = 0;
+
+  for (const [, x, y, body] of svg.matchAll(/<text x="(\d+)" y="(\d+)"[^>]*>(.*?)<\/text>/gsu)) {
+    if (!matchesColumn(Number(x))) {
+      continue;
+    }
+
+    const lineOffsets = [...body.matchAll(/dy="(\d+)"/gu)].reduce((total, [, dy]) => total + Number(dy), 0);
+
+    lowest = Math.max(lowest, Number(y) + lineOffsets);
+  }
+
+  return lowest;
+}

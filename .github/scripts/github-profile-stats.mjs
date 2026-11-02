@@ -1,4 +1,10 @@
-import { ownerNodes, ownerQueryArguments, ownerQueryFields, ownerVariables } from './repository-owners.mjs';
+import {
+  assertOwnersResolved,
+  ownerNodes,
+  ownerQueryArguments,
+  ownerQueryFields,
+  ownerVariables,
+} from './repository-owners.mjs';
 
 const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
 const TECHNOLOGY_SIGNALS = new Map([
@@ -9,6 +15,8 @@ const TECHNOLOGY_SIGNALS = new Map([
   ['TypeScript', 'TypeScript'],
   ['JavaScript', 'JavaScript'],
   ['Python', 'Python'],
+  ['C', 'C'],
+  ['C++', 'C++'],
 ]);
 
 const PROFILE_STATS_QUERY = `
@@ -97,14 +105,16 @@ export function normalizeGitHubProfileStats(payload, today) {
   const calendar = user.contributionsCollection.contributionCalendar;
   const days = calendar.weeks.flatMap((week) => week.contributionDays);
   const streaks = calculateStreaks(days, today);
-  const languageSizes = new Map([...TECHNOLOGY_SIGNALS.keys()].map((language) => [language, 0]));
+  const languageSizes = new Map([...TECHNOLOGY_SIGNALS.values()].map((signal) => [signal, 0]));
   const repositoryOwners = ownerNodes(payload.data);
 
   for (const owner of repositoryOwners) {
     for (const repository of owner.repositories?.nodes ?? []) {
       for (const edge of repository.languages?.edges ?? []) {
-        if (TECHNOLOGY_SIGNALS.has(edge.node.name)) {
-          languageSizes.set(edge.node.name, languageSizes.get(edge.node.name) + edge.size);
+        const signal = TECHNOLOGY_SIGNALS.get(edge.node.name);
+
+        if (signal) {
+          languageSizes.set(signal, languageSizes.get(signal) + edge.size);
         }
       }
     }
@@ -113,8 +123,8 @@ export function normalizeGitHubProfileStats(payload, today) {
   const selectedLanguages = [...languageSizes.entries()]
     .sort((left, right) => right[1] - left[1]);
   const totalLanguageSize = selectedLanguages.reduce((total, [, size]) => total + size, 0);
-  const languages = selectedLanguages.map(([language, size]) => ({
-    name: TECHNOLOGY_SIGNALS.get(language),
+  const languages = selectedLanguages.map(([name, size]) => ({
+    name,
     share: totalLanguageSize === 0 ? 0 : Math.round((size / totalLanguageSize) * 1000) / 10,
   }));
 
@@ -167,6 +177,8 @@ export async function fetchGitHubProfileStats({
   if (payload.errors?.length) {
     throw new Error(payload.errors.map((error) => error.message).join('; '));
   }
+
+  assertOwnersResolved(payload.data);
 
   return normalizeGitHubProfileStats(payload, today);
 }
