@@ -40,12 +40,14 @@ test('normalizes contribution totals and aggregates selected languages across al
   assert.equal(stats.currentStreak, 2);
   assert.equal(stats.longestStreak, 2);
   assert.deepEqual(stats.languages, [
-    { name: 'PHP + Laravel', share: 43.8 },
-    { name: 'TypeScript', share: 24.2 },
-    { name: 'Swift + SwiftUI', share: 11.2 },
-    { name: 'Go', share: 9 },
-    { name: 'Rust', share: 6.2 },
-    { name: 'JavaScript', share: 5.6 },
+    { name: 'PHP + Laravel', share: 39 },
+    { name: 'TypeScript', share: 21.5 },
+    { name: 'Swift + SwiftUI', share: 10 },
+    { name: 'Go', share: 8 },
+    { name: 'C++', share: 7 },
+    { name: 'Rust', share: 5.5 },
+    { name: 'JavaScript', share: 5 },
+    { name: 'C', share: 4 },
     { name: 'Python', share: 0 },
   ]);
   assert.equal(stats.languages.reduce((sum, language) => sum + language.share, 0), 100);
@@ -224,6 +226,21 @@ function createFixture() {
                 edges: [
                   { size: 900, node: { name: 'PHP' } },
                   { size: 250, node: { name: 'TypeScript' } },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      [ownerAlias('kriol-lang')]: {
+        repositories: {
+          nodes: [
+            {
+              languages: {
+                edges: [
+                  { size: 700, node: { name: 'C++' } },
+                  { size: 400, node: { name: 'C' } },
+                  { size: 100, node: { name: 'Shell' } },
                 ],
               },
             },

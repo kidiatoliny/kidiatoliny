@@ -45,3 +45,29 @@ test('escapes dynamic language names', () => {
 
   assert.match(svg, /A&amp;B/u);
 });
+
+test('keeps every language row and stack entry inside its card', () => {
+  const svg = renderGitHubStatsGrid(
+    { ...stats, languages: Array.from({ length: 9 }, (_, index) => ({ name: `Language ${index}`, share: 1 })) },
+    'github',
+  );
+
+  assert.ok(lowestBaseline(svg, (x) => x < 518) <= 592);
+  assert.ok(lowestBaseline(svg, (x) => x >= 518) <= 592);
+});
+
+function lowestBaseline(svg, matchesColumn) {
+  let lowest = 0;
+
+  for (const [, x, y, body] of svg.matchAll(/<text x="(\d+)" y="(\d+)"[^>]*>(.*?)<\/text>/gsu)) {
+    if (!matchesColumn(Number(x))) {
+      continue;
+    }
+
+    const lineOffsets = [...body.matchAll(/dy="(\d+)"/gu)].reduce((total, [, dy]) => total + Number(dy), 0);
+
+    lowest = Math.max(lowest, Number(y) + lineOffsets);
+  }
+
+  return lowest;
+}

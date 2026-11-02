@@ -4,6 +4,7 @@ export const REPOSITORY_OWNERS = [
   'akira-foundation',
   'Nos-Ferry',
   'Bu-Payment',
+  'kriol-lang',
 ];
 
 export function ownerAlias(login) {

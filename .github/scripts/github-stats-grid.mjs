@@ -16,6 +16,9 @@ const STACK = [
   ['OPERATIONS', ['Docker · GitHub Actions · Pest · PHPStan']],
 ];
 
+const LANGUAGE_ROW_TOP = 314;
+const LANGUAGE_ROW_STEP = 33;
+
 const LANGUAGE_COLORS = {
   'PHP + Laravel': '#777bb4',
   TypeScript: '#3178c6',
@@ -24,6 +27,8 @@ const LANGUAGE_COLORS = {
   Rust: '#dea584',
   Go: '#00add8',
   Python: '#3572a5',
+  C: '#555555',
+  'C++': '#f34b7d',
   CSS: '#563d7c',
   Astro: '#ff5a03',
 };
@@ -49,7 +54,7 @@ export function renderGitHubStatsGrid(stats, theme = 'github') {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-labelledby="stats-title stats-description">
   <title id="stats-title">Kidiatoliny GitHub signal</title>
-  <desc id="stats-description">Contribution statistics for ${stats.year}, a seven-language technology footprint measured across every repository the owner holds, and the current engineering stack. Swift represents Swift and SwiftUI work; PHP represents PHP and Laravel work.</desc>
+  <desc id="stats-description">Contribution statistics for ${stats.year}, the technology footprint measured across every repository the owner holds, and the current engineering stack. Swift represents Swift and SwiftUI work; PHP represents PHP and Laravel work.</desc>
   <rect width="${WIDTH}" height="${HEIGHT}" rx="22" fill="${palette.background}" stroke="${palette.border}" stroke-width="2"/>
   <text x="28" y="50" fill="${palette.text}" font-family="${FONT}" font-size="30" font-weight="800">GitHub signal</text>
   <text x="1172" y="45" fill="${palette.muted}" font-family="${MONO}" font-size="13" font-weight="700" letter-spacing="3" text-anchor="end">PUBLIC ACTIVITY · ${stats.year}</text>
@@ -80,7 +85,7 @@ function renderStatCard(label, value, index, palette) {
 
 function renderLanguages(languages, palette) {
   return languages.map((language, index) => {
-    const y = 332 + (index * 38);
+    const y = LANGUAGE_ROW_TOP + (index * LANGUAGE_ROW_STEP);
     const color = LANGUAGE_COLORS[language.name] ?? palette.blue;
     const width = Math.max(12, Math.round(language.share * 2.4));
 
