@@ -2,7 +2,13 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { ownerNodes, ownerQueryArguments, ownerQueryFields, ownerVariables } from './repository-owners.mjs';
+import {
+  assertOwnersResolved,
+  ownerNodes,
+  ownerQueryArguments,
+  ownerQueryFields,
+  ownerVariables,
+} from './repository-owners.mjs';
 
 const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
 const WIDTH = 1200;
@@ -154,6 +160,8 @@ export async function fetchEcosystemCounts({ token, topics, fetchImpl = fetch })
   if (payload.errors?.length) {
     throw new Error(payload.errors.map((error) => error.message).join('; '));
   }
+
+  assertOwnersResolved(payload.data);
 
   return countEcosystemTopics(payload, topics);
 }

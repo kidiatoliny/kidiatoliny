@@ -28,3 +28,11 @@ export function ownerQueryFields(fragment) {
 export function ownerNodes(data) {
   return REPOSITORY_OWNERS.map((login) => data?.[ownerAlias(login)]).filter(Boolean);
 }
+
+export function assertOwnersResolved(data) {
+  const unresolved = REPOSITORY_OWNERS.filter((login) => !data?.[ownerAlias(login)]);
+
+  if (unresolved.length > 0) {
+    throw new Error(`GitHub returned no repository owner for ${unresolved.join(', ')}.`);
+  }
+}

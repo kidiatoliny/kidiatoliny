@@ -104,6 +104,27 @@ test('reports GitHub GraphQL errors', async () => {
   );
 });
 
+test('refuses a payload where an owner resolved to nothing', async () => {
+  const fetchImpl = async () => {
+    const payload = createFixture();
+
+    payload.data[ownerAlias('kriol-lang')] = null;
+
+    return { ok: true, json: async () => payload };
+  };
+
+  await assert.rejects(
+    () => fetchGitHubProfileStats({
+      token: 'github-token',
+      username: 'kidiatoliny',
+      year: 2026,
+      today: '2026-07-21',
+      fetchImpl,
+    }),
+    /no repository owner for kriol-lang/u,
+  );
+});
+
 function createFixture() {
   return {
     data: {

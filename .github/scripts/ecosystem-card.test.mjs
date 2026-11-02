@@ -32,6 +32,9 @@ function createFixture() {
       [ownerAlias('Bu-Payment')]: {
         repositories: { nodes: [repository('akira-payments')] },
       },
+      [ownerAlias('kriol-lang')]: {
+        repositories: { nodes: [repository('akira-foundations')] },
+      },
     },
   };
 }
@@ -42,7 +45,7 @@ test('counts repositories per ecosystem topic across every owner', () => {
   assert.equal(counts.get('akira-product'), 1);
   assert.equal(counts.get('akira-apple-native'), 1);
   assert.equal(counts.get('akira-payments'), 3);
-  assert.equal(counts.get('akira-foundations'), 2);
+  assert.equal(counts.get('akira-foundations'), 3);
 });
 
 test('ignores topics outside the ecosystem vocabulary', () => {
@@ -140,6 +143,21 @@ test('reports GitHub GraphQL errors', async () => {
   await assert.rejects(
     () => fetchEcosystemCounts({ token: 'github-token', topics: TOPICS, fetchImpl }),
     /Bad credentials/u,
+  );
+});
+
+test('refuses a payload where an owner resolved to nothing', async () => {
+  const fetchImpl = async () => {
+    const payload = createFixture();
+
+    payload.data[ownerAlias('kriol-lang')] = null;
+
+    return { ok: true, json: async () => payload };
+  };
+
+  await assert.rejects(
+    () => fetchEcosystemCounts({ token: 'github-token', topics: TOPICS, fetchImpl }),
+    /no repository owner for kriol-lang/u,
   );
 });
 

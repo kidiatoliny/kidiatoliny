@@ -1,4 +1,10 @@
-import { ownerNodes, ownerQueryArguments, ownerQueryFields, ownerVariables } from './repository-owners.mjs';
+import {
+  assertOwnersResolved,
+  ownerNodes,
+  ownerQueryArguments,
+  ownerQueryFields,
+  ownerVariables,
+} from './repository-owners.mjs';
 
 const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
 const TECHNOLOGY_SIGNALS = new Map([
@@ -171,6 +177,8 @@ export async function fetchGitHubProfileStats({
   if (payload.errors?.length) {
     throw new Error(payload.errors.map((error) => error.message).join('; '));
   }
+
+  assertOwnersResolved(payload.data);
 
   return normalizeGitHubProfileStats(payload, today);
 }
