@@ -17,6 +17,11 @@ const STACK = [
   ['DATA', ['PostgreSQL · MySQL · SQLite · Redis']],
 ];
 
+export const CARDS = {
+  languages: { x: 18, y: 224, width: 482, height: 368 },
+  stack: { x: 518, y: 224, width: 664, height: 368 },
+};
+
 const LANGUAGE_ROW_TOP = 314;
 const LANGUAGE_ROW_STEP = 33;
 
@@ -60,15 +65,19 @@ export function renderGitHubStatsGrid(stats, theme = 'github') {
   <text x="28" y="50" fill="${palette.text}" font-family="${FONT}" font-size="30" font-weight="800">GitHub signal</text>
   <text x="1172" y="45" fill="${palette.muted}" font-family="${MONO}" font-size="13" font-weight="700" letter-spacing="3" text-anchor="end">PUBLIC ACTIVITY · ${stats.year}</text>
   ${cards.map(([label, value], index) => renderStatCard(label, value, index, palette)).join('\n  ')}
-  <rect x="18" y="224" width="482" height="368" rx="18" fill="${palette.surface}" stroke="${palette.border}"/>
+  ${renderCardSurface(CARDS.languages, palette)}
   <text x="42" y="266" fill="${palette.blue}" font-family="${FONT}" font-size="20" font-weight="750">Core technology footprint</text>
   <text x="42" y="291" fill="${palette.muted}" font-family="${MONO}" font-size="12" letter-spacing="1.5">WHERE THE WORK LIVES</text>
   ${renderLanguages(stats.languages, palette)}
-  <rect x="518" y="224" width="664" height="368" rx="18" fill="${palette.surface}" stroke="${palette.border}"/>
+  ${renderCardSurface(CARDS.stack, palette)}
   <text x="542" y="266" fill="${palette.text}" font-family="${FONT}" font-size="20" font-weight="750">Current stack</text>
   <text x="1158" y="264" fill="${palette.muted}" font-family="${MONO}" font-size="12" letter-spacing="1.5" text-anchor="end">TOOLS IN ACTIVE USE</text>
   ${renderStack(palette)}
 </svg>`;
+}
+
+function renderCardSurface({ x, y, width, height }, palette) {
+  return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="18" fill="${palette.surface}" stroke="${palette.border}"/>`;
 }
 
 function renderStatCard(label, value, index, palette) {

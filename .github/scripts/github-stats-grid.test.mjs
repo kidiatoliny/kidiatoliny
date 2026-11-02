@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { renderGitHubStatsGrid } from './github-stats-grid.mjs';
+import { CARDS, renderGitHubStatsGrid } from './github-stats-grid.mjs';
 
 const stats = {
   year: 2026,
@@ -55,8 +55,8 @@ test('keeps every language row and stack entry inside its card', () => {
     'github',
   );
 
-  assert.ok(lowestBaseline(svg, (x) => x < 518) <= 592);
-  assert.ok(lowestBaseline(svg, (x) => x >= 518) <= 592);
+  assert.ok(lowestBaseline(svg, (x) => x < CARDS.stack.x) <= CARDS.languages.y + CARDS.languages.height);
+  assert.ok(lowestBaseline(svg, (x) => x >= CARDS.stack.x) <= CARDS.stack.y + CARDS.stack.height);
 });
 
 function lowestBaseline(svg, matchesColumn) {
