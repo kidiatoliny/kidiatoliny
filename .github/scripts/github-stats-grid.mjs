@@ -8,12 +8,13 @@ const FONT = 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
 const MONO = 'SFMono-Regular, Consolas, Liberation Mono, monospace';
 
 const STACK = [
-  ['APPLICATIONS', ['Laravel · React · React Native']],
+  ['APPLICATIONS', ['Laravel · React · React Native', 'Node · Bun · Vite']],
   ['APPLE NATIVE', ['Swift · SwiftUI · SwiftData', 'App Intents · Live Activities']],
   ['SYSTEMS', ['Go · Rust · Tauri · Wails']],
   ['INTELLIGENCE', ['Apple Intelligence · MLX']],
-  ['DATA', ['PostgreSQL · MySQL · SQLite · Redis']],
+  ['LANGUAGE TOOLING', ['C · C++ · LLVM · CMake', 'Bison · Flex · Tree-sitter']],
   ['OPERATIONS', ['Docker · GitHub Actions · Pest · PHPStan']],
+  ['DATA', ['PostgreSQL · MySQL · SQLite · Redis']],
 ];
 
 const LANGUAGE_ROW_TOP = 314;

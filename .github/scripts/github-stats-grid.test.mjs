@@ -32,6 +32,9 @@ test('renders contributions, streaks, languages, and current stack', () => {
   assert.match(svg, /JavaScript/u);
   assert.match(svg, /Swift · SwiftUI · SwiftData/u);
   assert.match(svg, /App Intents · Live Activities/u);
+  assert.match(svg, /Node · Bun · Vite/u);
+  assert.match(svg, /C · C\+\+ · LLVM · CMake/u);
+  assert.match(svg, /Bison · Flex · Tree-sitter/u);
   assert.doesNotMatch(svg, /Language distribution|TOP PUBLIC REPOSITORIES|pull requests|commits|terminal|zsh|github-stats --year/u);
 });
 
