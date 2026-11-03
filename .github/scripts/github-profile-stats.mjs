@@ -14,11 +14,7 @@ const TECHNOLOGY_SIGNALS = new Map([
 
 const REQUEST_SUBJECT = 'profile statistics';
 
-const REPOSITORY_FILTERS = `
-  isFork: false
-  ownerAffiliations: OWNER
-  orderBy: { field: UPDATED_AT, direction: DESC }
-`;
+const REPOSITORY_FILTERS = 'isFork: false, ownerAffiliations: OWNER';
 
 const LANGUAGE_SELECTION = `
   languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {

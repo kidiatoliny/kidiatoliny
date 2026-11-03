@@ -59,7 +59,7 @@ async function fetchOwnerRepositories({ token, login, filters, selection, subjec
       token,
       query,
       variables: { login, after },
-      subject,
+      subject: `${subject} for ${login}`,
       fetchImpl,
     });
     const repositories = data?.repositoryOwner?.repositories;
@@ -68,17 +68,28 @@ async function fetchOwnerRepositories({ token, login, filters, selection, subjec
       throw new Error(`GitHub returned no repository owner for ${login}.`);
     }
 
+    const { hasNextPage, endCursor } = repositories.pageInfo;
+
+    if (hasNextPage && (!endCursor || endCursor === after)) {
+      throw new Error(`GitHub returned an unusable page cursor for ${login}.`);
+    }
+
     nodes.push(...repositories.nodes);
-    after = repositories.pageInfo.hasNextPage ? repositories.pageInfo.endCursor : null;
+    after = hasNextPage ? endCursor : null;
   } while (after);
 
   return nodes;
 }
 
 export async function fetchEveryOwnerRepositories(options) {
-  const perOwner = await Promise.all(
+  const results = await Promise.allSettled(
     REPOSITORY_OWNERS.map((login) => fetchOwnerRepositories({ ...options, login })),
   );
+  const failures = results.filter((result) => result.status === 'rejected');
 
-  return perOwner.flat();
+  if (failures.length > 0) {
+    throw new Error(failures.map((failure) => failure.reason.message).join(' '));
+  }
+
+  return results.flatMap((result) => result.value);
 }

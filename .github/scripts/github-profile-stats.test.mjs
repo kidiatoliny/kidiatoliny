@@ -4,6 +4,13 @@ import test from 'node:test';
 import { REPOSITORY_OWNERS } from './repository-owners.mjs';
 
 import {
+  CONTRIBUTION_CALENDAR,
+  OWNER_REPOSITORY_PAGES,
+  createFetchImpl,
+  everyFixtureRepository,
+} from './github-profile-stats.fixture.mjs';
+
+import {
   calculateStreaks,
   fetchGitHubProfileStats,
   normalizeGitHubProfileStats,
@@ -89,6 +96,8 @@ test('fetches profile stats through GitHub GraphQL', async () => {
     to: '2026-07-21T23:59:59Z',
   });
 
+  assert.ok(repositories.length > 0);
+
   for (const repositoryRequest of repositories) {
     assert.match(repositoryRequest.body, /repositoryOwner/u);
     assert.match(repositoryRequest.body, /isFork: false/u);
@@ -115,7 +124,7 @@ test('asks every allowlisted owner for its repositories', async () => {
   assert.deepEqual([...new Set(asked)].sort(), [...REPOSITORY_OWNERS].sort());
 });
 
-test('follows every repository page before aggregating', async () => {
+test('follows every repository page before aggregating', { timeout: 5000 }, async () => {
   const requests = [];
   const stats = await fetchGitHubProfileStats({
     token: 'github-token',
@@ -133,6 +142,49 @@ test('follows every repository page before aggregating', async () => {
     stats.languages.find((language) => language.name === 'PHP + Laravel'),
     { name: 'PHP + Laravel', share: 41.6 },
   );
+});
+
+test('refuses a page that claims a successor it cannot name', { timeout: 5000 }, async () => {
+  await assert.rejects(
+    () => fetchGitHubProfileStats({
+      token: 'github-token',
+      username: 'kidiatoliny',
+      year: 2026,
+      today: '2026-07-21',
+      fetchImpl: createFetchImpl([], { danglingCursor: 'kriol-lang' }),
+    }),
+    /unusable page cursor for kriol-lang/u,
+  );
+});
+
+test('refuses a cursor that never advances', { timeout: 5000 }, async () => {
+  await assert.rejects(
+    () => fetchGitHubProfileStats({
+      token: 'github-token',
+      username: 'kidiatoliny',
+      year: 2026,
+      today: '2026-07-21',
+      fetchImpl: createFetchImpl([], { stuckCursor: 'kriol-lang' }),
+    }),
+    /unusable page cursor for kriol-lang/u,
+  );
+});
+
+test('names every owner that failed, not just the first', { timeout: 5000 }, async () => {
+  await assert.rejects(
+    () => fetchGitHubProfileStats({
+      token: 'github-token',
+      username: 'kidiatoliny',
+      year: 2026,
+      today: '2026-07-21',
+      fetchImpl: createFetchImpl([], { unresolved: ['kriol-lang', 'Bu-Payment'] }),
+    }),
+    (error) => /kriol-lang/u.test(error.message) && /Bu-Payment/u.test(error.message),
+  );
+});
+
+test('covers every allowlisted owner in the fixture', () => {
+  assert.deepEqual(Object.keys(OWNER_REPOSITORY_PAGES).sort(), [...REPOSITORY_OWNERS].sort());
 });
 
 test('reports GitHub GraphQL errors', async () => {
@@ -173,89 +225,8 @@ test('refuses a payload where an owner resolved to nothing', async () => {
       username: 'kidiatoliny',
       year: 2026,
       today: '2026-07-21',
-      fetchImpl: createFetchImpl([], { unresolved: 'kriol-lang' }),
+      fetchImpl: createFetchImpl([], { unresolved: ['kriol-lang'] }),
     }),
     /no repository owner for kriol-lang/u,
   );
 });
-
-const CONTRIBUTION_CALENDAR = {
-  totalContributions: 42,
-  weeks: [
-    {
-      contributionDays: [
-        { date: '2026-07-18', contributionCount: 0 },
-        { date: '2026-07-19', contributionCount: 3 },
-        { date: '2026-07-20', contributionCount: 4 },
-        { date: '2026-07-21', contributionCount: 0 },
-      ],
-    },
-  ],
-};
-
-const OWNER_REPOSITORY_PAGES = {
-  kidiatoliny: [
-    {
-      cursor: 'kidiatoliny-page-2',
-      nodes: [
-        repository(['PHP', 900], ['TypeScript', 500], ['Swift', 200]),
-        repository(['TypeScript', 400], ['Rust', 150], ['Go', 100], ['Shell', 50]),
-      ],
-    },
-    { cursor: null, nodes: [repository(['PHP', 600], ['C', 200])] },
-  ],
-  'akira-io': [{ cursor: null, nodes: [repository(['PHP', 600], ['Go', 500], ['JavaScript', 300])] }],
-  'akira-foundation': [
-    { cursor: null, nodes: [repository(['Swift', 800], ['TypeScript', 300], ['Rust', 400])] },
-  ],
-  'Nos-Ferry': [
-    {
-      cursor: null,
-      nodes: [repository(['PHP', 1500], ['TypeScript', 700], ['JavaScript', 200], ['Go', 200])],
-    },
-  ],
-  'Bu-Payment': [{ cursor: null, nodes: [repository(['PHP', 900], ['TypeScript', 250])] }],
-  'kriol-lang': [{ cursor: null, nodes: [repository(['C++', 700], ['C', 400], ['Shell', 100])] }],
-};
-
-function repository(...languages) {
-  return { languages: { edges: languages.map(([name, size]) => ({ size, node: { name } })) } };
-}
-
-function everyFixtureRepository() {
-  return Object.values(OWNER_REPOSITORY_PAGES).flatMap((pages) => pages.flatMap((page) => page.nodes));
-}
-
-function createFetchImpl(requests = [], { unresolved } = {}) {
-  return async (_url, request) => {
-    requests.push(request);
-
-    const { variables } = JSON.parse(request.body);
-
-    if (!Object.hasOwn(variables, 'after')) {
-      return respond({ user: { contributionsCollection: { contributionCalendar: CONTRIBUTION_CALENDAR } } });
-    }
-
-    if (variables.login === unresolved) {
-      return respond({ repositoryOwner: null });
-    }
-
-    const pages = OWNER_REPOSITORY_PAGES[variables.login];
-    const page = variables.after === null
-      ? pages[0]
-      : pages.find((_candidate, index) => index > 0 && pages[index - 1].cursor === variables.after);
-
-    return respond({
-      repositoryOwner: {
-        repositories: {
-          nodes: page.nodes,
-          pageInfo: { hasNextPage: page.cursor !== null, endCursor: page.cursor },
-        },
-      },
-    });
-  };
-}
-
-function respond(data) {
-  return { ok: true, json: async () => ({ data }) };
-}

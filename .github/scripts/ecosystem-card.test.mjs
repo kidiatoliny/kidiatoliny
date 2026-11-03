@@ -22,7 +22,7 @@ const OWNER_REPOSITORY_PAGES = {
       cursor: 'kidiatoliny-page-2',
       nodes: [repository('akira-product'), repository('akira-foundations', 'laravel')],
     },
-    { cursor: null, nodes: [repository()] },
+    { cursor: null, nodes: [repository('akira-product')] },
   ],
   'akira-io': [
     {
@@ -74,7 +74,7 @@ function createFetchImpl(requests = [], { unresolved } = {}) {
 test('counts repositories per ecosystem topic across every owner', () => {
   const counts = countEcosystemTopics(everyFixtureRepository(), TOPICS);
 
-  assert.equal(counts.get('akira-product'), 1);
+  assert.equal(counts.get('akira-product'), 2);
   assert.equal(counts.get('akira-apple-native'), 1);
   assert.equal(counts.get('akira-payments'), 3);
   assert.equal(counts.get('akira-foundations'), 3);
@@ -165,7 +165,7 @@ test('fetches ecosystem counts through GitHub GraphQL for every owner', async ()
   assert.deepEqual([...new Set(asked)].sort(), [...REPOSITORY_OWNERS].sort());
 });
 
-test('follows every repository page before counting', async () => {
+test('follows every repository page before counting', { timeout: 5000 }, async () => {
   const requests = [];
   const counts = await fetchEcosystemCounts({
     token: 'github-token',
@@ -177,7 +177,7 @@ test('follows every repository page before counting', async () => {
     .filter((variables) => variables.after);
 
   assert.deepEqual(continuations, [{ login: 'kidiatoliny', after: 'kidiatoliny-page-2' }]);
-  assert.equal(counts.get('akira-foundations'), 3);
+  assert.equal(counts.get('akira-product'), 2);
 });
 
 test('reports GitHub GraphQL errors', async () => {
@@ -198,6 +198,10 @@ test('refuses a payload where an owner resolved to nothing', async () => {
     }),
     /no repository owner for kriol-lang/u,
   );
+});
+
+test('covers every allowlisted owner in the fixture', () => {
+  assert.deepEqual(Object.keys(OWNER_REPOSITORY_PAGES).sort(), [...REPOSITORY_OWNERS].sort());
 });
 
 test('keeps the configured topics aligned with the card categories', () => {
