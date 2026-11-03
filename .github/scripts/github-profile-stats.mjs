@@ -104,7 +104,7 @@ export function normalizeGitHubProfileStats({ contributionCalendar, repositories
     share: totalLanguageSize === 0 ? 0 : Math.round((size / totalLanguageSize) * 1000) / 10,
   }));
 
-  if (languages.length > 0) {
+  if (totalLanguageSize > 0) {
     const roundedTotal = languages.reduce((total, language) => total + language.share, 0);
     languages[0].share = Math.round((languages[0].share + 100 - roundedTotal) * 10) / 10;
   }

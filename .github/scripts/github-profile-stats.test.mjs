@@ -58,6 +58,15 @@ test('normalizes contribution totals and aggregates selected languages', () => {
   assert.equal(Math.round(total * 10) / 10, 100);
 });
 
+test('reports a zero share for every language when no repository carries one', () => {
+  const stats = normalizeGitHubProfileStats(
+    { contributionCalendar: CONTRIBUTION_CALENDAR, repositories: [] },
+    '2026-07-21',
+  );
+
+  assert.deepEqual(stats.languages.map((language) => language.share), [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+});
+
 test('fetches profile stats through GitHub GraphQL', async () => {
   const requests = [];
   const stats = await fetchGitHubProfileStats({
