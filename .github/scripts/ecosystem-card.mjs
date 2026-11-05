@@ -2,15 +2,8 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import {
-  assertOwnersResolved,
-  ownerNodes,
-  ownerQueryArguments,
-  ownerQueryFields,
-  ownerVariables,
-} from './repository-owners.mjs';
+import { fetchEveryOwnerRepositories } from './repository-owners.mjs';
 
-const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
 const WIDTH = 1200;
 const HEIGHT = 480;
 const FONT = '-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif';
@@ -18,23 +11,15 @@ const MONO = 'SFMono-Regular,Consolas,monospace';
 const CARD_X = [18, 312, 606, 900];
 const CARD_WIDTH = [281, 281, 281, 282];
 
-const ECOSYSTEM_QUERY = `
-  query EcosystemTopics(
-    ${ownerQueryArguments()}
-  ) {
-    ${ownerQueryFields('RepositoryTopics')}
-  }
+const REQUEST_SUBJECT = 'ecosystem topics';
 
-  fragment RepositoryTopics on RepositoryOwner {
-    repositories(first: 100, isFork: false, ownerAffiliations: OWNER, privacy: PUBLIC) {
-      nodes {
-        repositoryTopics(first: 20) {
-          nodes {
-            topic {
-              name
-            }
-          }
-        }
+const REPOSITORY_FILTERS = 'isFork: false, ownerAffiliations: OWNER, privacy: PUBLIC';
+
+const TOPIC_SELECTION = `
+  repositoryTopics(first: 20) {
+    nodes {
+      topic {
+        name
       }
     }
   }
@@ -69,17 +54,15 @@ const THEMES = {
   },
 };
 
-export function countEcosystemTopics(payload, topics) {
+export function countEcosystemTopics(repositories, topics) {
   const counts = new Map(topics.map((topic) => [topic, 0]));
 
-  for (const owner of ownerNodes(payload?.data)) {
-    for (const repository of owner.repositories?.nodes ?? []) {
-      for (const node of repository.repositoryTopics?.nodes ?? []) {
-        const topic = node.topic?.name;
+  for (const repository of repositories) {
+    for (const node of repository.repositoryTopics?.nodes ?? []) {
+      const topic = node.topic?.name;
 
-        if (counts.has(topic)) {
-          counts.set(topic, counts.get(topic) + 1);
-        }
+      if (counts.has(topic)) {
+        counts.set(topic, counts.get(topic) + 1);
       }
     }
   }
@@ -140,30 +123,15 @@ export function readEcosystemConfig(path = DEFAULT_CONFIG_PATH) {
 }
 
 export async function fetchEcosystemCounts({ token, topics, fetchImpl = fetch }) {
-  const response = await fetchImpl(GITHUB_GRAPHQL_URL, {
-    method: 'POST',
-    headers: {
-      accept: 'application/vnd.github+json',
-      authorization: `Bearer ${token}`,
-      'content-type': 'application/json',
-      'user-agent': 'kidiatoliny-profile-readme',
-    },
-    body: JSON.stringify({ query: ECOSYSTEM_QUERY, variables: ownerVariables() }),
+  const repositories = await fetchEveryOwnerRepositories({
+    token,
+    filters: REPOSITORY_FILTERS,
+    selection: TOPIC_SELECTION,
+    subject: REQUEST_SUBJECT,
+    fetchImpl,
   });
 
-  if (!response.ok) {
-    throw new Error(`GitHub ecosystem topics request failed with status ${response.status}.`);
-  }
-
-  const payload = await response.json();
-
-  if (payload.errors?.length) {
-    throw new Error(payload.errors.map((error) => error.message).join('; '));
-  }
-
-  assertOwnersResolved(payload.data);
-
-  return countEcosystemTopics(payload, topics);
+  return countEcosystemTopics(repositories, topics);
 }
 
 function escapeXml(value) {

@@ -1,12 +1,5 @@
-import {
-  assertOwnersResolved,
-  ownerNodes,
-  ownerQueryArguments,
-  ownerQueryFields,
-  ownerVariables,
-} from './repository-owners.mjs';
+import { fetchEveryOwnerRepositories, requestGitHubGraphQL } from './repository-owners.mjs';
 
-const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
 const TECHNOLOGY_SIGNALS = new Map([
   ['Swift', 'Swift + SwiftUI'],
   ['PHP', 'PHP + Laravel'],
@@ -19,13 +12,23 @@ const TECHNOLOGY_SIGNALS = new Map([
   ['C++', 'C++'],
 ]);
 
-const PROFILE_STATS_QUERY = `
-  query ProfileStats(
-    $login: String!
-    $from: DateTime!
-    $to: DateTime!
-    ${ownerQueryArguments()}
-  ) {
+const REQUEST_SUBJECT = 'profile statistics';
+
+const REPOSITORY_FILTERS = 'isFork: false, ownerAffiliations: OWNER';
+
+const LANGUAGE_SELECTION = `
+  languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+    edges {
+      size
+      node {
+        name
+      }
+    }
+  }
+`;
+
+const CONTRIBUTIONS_QUERY = `
+  query ProfileContributions($login: String!, $from: DateTime!, $to: DateTime!) {
     user(login: $login) {
       contributionsCollection(from: $from, to: $to) {
         contributionCalendar {
@@ -39,27 +42,6 @@ const PROFILE_STATS_QUERY = `
         }
       }
     }
-    ${ownerQueryFields('RepositoryLanguages')}
-  }
-
-  fragment RepositoryLanguages on RepositoryOwner {
-    repositories(
-        first: 100
-        isFork: false
-        ownerAffiliations: OWNER
-        orderBy: { field: UPDATED_AT, direction: DESC }
-      ) {
-        nodes {
-          languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
-            edges {
-              size
-              node {
-                name
-              }
-            }
-          }
-        }
-      }
   }
 `;
 
@@ -95,27 +77,17 @@ export function calculateStreaks(days, today) {
   return { current, longest };
 }
 
-export function normalizeGitHubProfileStats(payload, today) {
-  const user = payload?.data?.user;
-
-  if (!user) {
-    throw new Error('GitHub profile statistics did not include a user.');
-  }
-
-  const calendar = user.contributionsCollection.contributionCalendar;
-  const days = calendar.weeks.flatMap((week) => week.contributionDays);
+export function normalizeGitHubProfileStats({ contributionCalendar, repositories }, today) {
+  const days = contributionCalendar.weeks.flatMap((week) => week.contributionDays);
   const streaks = calculateStreaks(days, today);
   const languageSizes = new Map([...TECHNOLOGY_SIGNALS.values()].map((signal) => [signal, 0]));
-  const repositoryOwners = ownerNodes(payload.data);
 
-  for (const owner of repositoryOwners) {
-    for (const repository of owner.repositories?.nodes ?? []) {
-      for (const edge of repository.languages?.edges ?? []) {
-        const signal = TECHNOLOGY_SIGNALS.get(edge.node.name);
+  for (const repository of repositories) {
+    for (const edge of repository.languages?.edges ?? []) {
+      const signal = TECHNOLOGY_SIGNALS.get(edge.node.name);
 
-        if (signal) {
-          languageSizes.set(signal, languageSizes.get(signal) + edge.size);
-        }
+      if (signal) {
+        languageSizes.set(signal, languageSizes.get(signal) + edge.size);
       }
     }
   }
@@ -128,14 +100,14 @@ export function normalizeGitHubProfileStats(payload, today) {
     share: totalLanguageSize === 0 ? 0 : Math.round((size / totalLanguageSize) * 1000) / 10,
   }));
 
-  if (languages.length > 0) {
+  if (totalLanguageSize > 0) {
     const roundedTotal = languages.reduce((total, language) => total + language.share, 0);
     languages[0].share = Math.round((languages[0].share + 100 - roundedTotal) * 10) / 10;
   }
 
   return {
     year: Number(today.slice(0, 4)),
-    contributions: calendar.totalContributions,
+    contributions: contributionCalendar.totalContributions,
     currentStreak: streaks.current,
     longestStreak: streaks.longest,
     languages,
@@ -149,36 +121,32 @@ export async function fetchGitHubProfileStats({
   today = new Date().toISOString().slice(0, 10),
   fetchImpl = fetch,
 }) {
-  const response = await fetchImpl(GITHUB_GRAPHQL_URL, {
-    method: 'POST',
-    headers: {
-      accept: 'application/vnd.github+json',
-      authorization: `Bearer ${token}`,
-      'content-type': 'application/json',
-      'user-agent': 'kidiatoliny-profile-readme',
+  const data = await requestGitHubGraphQL({
+    token,
+    query: CONTRIBUTIONS_QUERY,
+    variables: {
+      login: username,
+      from: `${year}-01-01T00:00:00Z`,
+      to: `${today}T23:59:59Z`,
     },
-    body: JSON.stringify({
-      query: PROFILE_STATS_QUERY,
-      variables: {
-        login: username,
-        ...ownerVariables(),
-        from: `${year}-01-01T00:00:00Z`,
-        to: `${today}T23:59:59Z`,
-      },
-    }),
+    subject: REQUEST_SUBJECT,
+    fetchImpl,
   });
 
-  if (!response.ok) {
-    throw new Error(`GitHub profile statistics request failed with status ${response.status}.`);
+  if (!data?.user) {
+    throw new Error('GitHub profile statistics did not include a user.');
   }
 
-  const payload = await response.json();
+  const repositories = await fetchEveryOwnerRepositories({
+    token,
+    filters: REPOSITORY_FILTERS,
+    selection: LANGUAGE_SELECTION,
+    subject: REQUEST_SUBJECT,
+    fetchImpl,
+  });
 
-  if (payload.errors?.length) {
-    throw new Error(payload.errors.map((error) => error.message).join('; '));
-  }
-
-  assertOwnersResolved(payload.data);
-
-  return normalizeGitHubProfileStats(payload, today);
+  return normalizeGitHubProfileStats(
+    { contributionCalendar: data.user.contributionsCollection.contributionCalendar, repositories },
+    today,
+  );
 }

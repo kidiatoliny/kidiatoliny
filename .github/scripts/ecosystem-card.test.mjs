@@ -8,7 +8,7 @@ import {
   readEcosystemConfig,
   renderEcosystemCard,
 } from './ecosystem-card.mjs';
-import { ownerAlias } from './repository-owners.mjs';
+import { REPOSITORY_OWNERS } from './repository-owners.mjs';
 
 const TOPICS = ['akira-product', 'akira-apple-native', 'akira-payments', 'akira-foundations'];
 
@@ -16,54 +16,79 @@ function repository(...topics) {
   return { repositoryTopics: { nodes: topics.map((name) => ({ topic: { name } })) } };
 }
 
-function createFixture() {
-  return {
-    data: {
-      [ownerAlias('kidiatoliny')]: {
-        repositories: { nodes: [repository('akira-product'), repository('akira-foundations', 'laravel'), repository()] },
-      },
-      [ownerAlias('akira-io')]: {
-        repositories: { nodes: [repository('akira-payments'), repository('akira-payments'), repository('akira-foundations')] },
-      },
-      [ownerAlias('akira-foundation')]: {
-        repositories: { nodes: [repository('akira-apple-native')] },
-      },
-      [ownerAlias('Nos-Ferry')]: { repositories: { nodes: [] } },
-      [ownerAlias('Bu-Payment')]: {
-        repositories: { nodes: [repository('akira-payments')] },
-      },
-      [ownerAlias('kriol-lang')]: {
-        repositories: { nodes: [repository('akira-foundations')] },
-      },
+const OWNER_REPOSITORY_PAGES = {
+  kidiatoliny: [
+    {
+      cursor: 'kidiatoliny-page-2',
+      nodes: [repository('akira-product'), repository('akira-foundations', 'laravel')],
     },
+    { cursor: null, nodes: [repository('akira-product')] },
+  ],
+  'akira-io': [
+    {
+      cursor: null,
+      nodes: [repository('akira-payments'), repository('akira-payments'), repository('akira-foundations')],
+    },
+  ],
+  'akira-foundation': [{ cursor: null, nodes: [repository('akira-apple-native')] }],
+  'Nos-Ferry': [{ cursor: null, nodes: [] }],
+  'Bu-Payment': [{ cursor: null, nodes: [repository('akira-payments')] }],
+  'kriol-lang': [{ cursor: null, nodes: [repository('akira-foundations')] }],
+};
+
+function everyFixtureRepository() {
+  return Object.values(OWNER_REPOSITORY_PAGES).flatMap((pages) => pages.flatMap((page) => page.nodes));
+}
+
+function createFetchImpl(requests = [], { unresolved } = {}) {
+  return async (_url, request) => {
+    requests.push(request);
+
+    const { variables } = JSON.parse(request.body);
+
+    if (variables.login === unresolved) {
+      return { ok: true, json: async () => ({ data: { repositoryOwner: null } }) };
+    }
+
+    const pages = OWNER_REPOSITORY_PAGES[variables.login];
+    const page = variables.after === null
+      ? pages[0]
+      : pages.find((_candidate, index) => index > 0 && pages[index - 1].cursor === variables.after);
+
+    return {
+      ok: true,
+      json: async () => ({
+        data: {
+          repositoryOwner: {
+            repositories: {
+              nodes: page.nodes,
+              pageInfo: { hasNextPage: page.cursor !== null, endCursor: page.cursor },
+            },
+          },
+        },
+      }),
+    };
   };
 }
 
 test('counts repositories per ecosystem topic across every owner', () => {
-  const counts = countEcosystemTopics(createFixture(), TOPICS);
+  const counts = countEcosystemTopics(everyFixtureRepository(), TOPICS);
 
-  assert.equal(counts.get('akira-product'), 1);
+  assert.equal(counts.get('akira-product'), 2);
   assert.equal(counts.get('akira-apple-native'), 1);
   assert.equal(counts.get('akira-payments'), 3);
   assert.equal(counts.get('akira-foundations'), 3);
 });
 
 test('ignores topics outside the ecosystem vocabulary', () => {
-  const counts = countEcosystemTopics(createFixture(), TOPICS);
+  const counts = countEcosystemTopics(everyFixtureRepository(), TOPICS);
 
   assert.equal(counts.has('laravel'), false);
   assert.equal([...counts.keys()].length, TOPICS.length);
 });
 
 test('counts a repository once per topic it carries', () => {
-  const payload = {
-    data: {
-      [ownerAlias('kidiatoliny')]: {
-        repositories: { nodes: [repository('akira-product', 'akira-apple-native')] },
-      },
-    },
-  };
-  const counts = countEcosystemTopics(payload, TOPICS);
+  const counts = countEcosystemTopics([repository('akira-product', 'akira-apple-native')], TOPICS);
 
   assert.equal(counts.get('akira-product'), 1);
   assert.equal(counts.get('akira-apple-native'), 1);
@@ -118,23 +143,41 @@ test('renders a zero count when a topic is on no repository', () => {
 });
 
 test('fetches ecosystem counts through GitHub GraphQL for every owner', async () => {
-  const fetchImpl = async (_url, request) => {
+  const requests = [];
+  const counts = await fetchEcosystemCounts({
+    token: 'github-token',
+    topics: TOPICS,
+    fetchImpl: createFetchImpl(requests),
+  });
+
+  assert.equal(counts.get('akira-payments'), 3);
+
+  for (const request of requests) {
     assert.equal(request.headers.authorization, 'Bearer github-token');
     assert.match(request.body, /repositoryTopics/u);
     assert.match(request.body, /privacy: PUBLIC/u);
+    assert.match(request.body, /hasNextPage/u);
     assert.doesNotMatch(request.body, /languages\(/u);
+  }
 
-    const { variables } = JSON.parse(request.body);
+  const asked = requests.map((request) => JSON.parse(request.body).variables.login);
 
-    assert.equal(variables[ownerAlias('kidiatoliny')], 'kidiatoliny');
-    assert.equal(variables[ownerAlias('Bu-Payment')], 'Bu-Payment');
+  assert.deepEqual([...new Set(asked)].sort(), [...REPOSITORY_OWNERS].sort());
+});
 
-    return { ok: true, json: async () => createFixture() };
-  };
+test('follows every repository page before counting', { timeout: 5000 }, async () => {
+  const requests = [];
+  const counts = await fetchEcosystemCounts({
+    token: 'github-token',
+    topics: TOPICS,
+    fetchImpl: createFetchImpl(requests),
+  });
+  const continuations = requests
+    .map((request) => JSON.parse(request.body).variables)
+    .filter((variables) => variables.after);
 
-  const counts = await fetchEcosystemCounts({ token: 'github-token', topics: TOPICS, fetchImpl });
-
-  assert.equal(counts.get('akira-payments'), 3);
+  assert.deepEqual(continuations, [{ login: 'kidiatoliny', after: 'kidiatoliny-page-2' }]);
+  assert.equal(counts.get('akira-product'), 2);
 });
 
 test('reports GitHub GraphQL errors', async () => {
@@ -147,18 +190,18 @@ test('reports GitHub GraphQL errors', async () => {
 });
 
 test('refuses a payload where an owner resolved to nothing', async () => {
-  const fetchImpl = async () => {
-    const payload = createFixture();
-
-    payload.data[ownerAlias('kriol-lang')] = null;
-
-    return { ok: true, json: async () => payload };
-  };
-
   await assert.rejects(
-    () => fetchEcosystemCounts({ token: 'github-token', topics: TOPICS, fetchImpl }),
+    () => fetchEcosystemCounts({
+      token: 'github-token',
+      topics: TOPICS,
+      fetchImpl: createFetchImpl([], { unresolved: 'kriol-lang' }),
+    }),
     /no repository owner for kriol-lang/u,
   );
+});
+
+test('covers every allowlisted owner in the fixture', () => {
+  assert.deepEqual(Object.keys(OWNER_REPOSITORY_PAGES).sort(), [...REPOSITORY_OWNERS].sort());
 });
 
 test('keeps the configured topics aligned with the card categories', () => {
